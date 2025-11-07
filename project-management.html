@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Management | MyBambu Q4 Action Plan</title>
+    <style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bamboo-green: #2ECC71;
+            --bamboo-dark-green: #27AE60;
+            --bamboo-light-green: #A8E6CF;
+            --bamboo-navy: #1A3A52;
+            --bamboo-dark: #0F2537;
+            --text-dark: #2C3E50;
+            --text-light: #7F8C8D;
+            --bg-light: #F8F9FA;
+            --border: #E1E8ED;
+            --white: #FFFFFF;
+            --red: #E74C3C;
+            --orange: #F39C12;
+            --blue: #3498DB;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-light);
+        }
+
+        /* Side Navigation */
+        .sidenav {
+            height: 100%;
+            width: 280px;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            background: var(--bamboo-dark);
+            overflow-x: hidden;
+            padding-top: 20px;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        }
+
+        .sidenav .logo {
+            padding: 0 25px 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sidenav .logo h1 {
+            color: var(--bamboo-green);
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .sidenav .logo p {
+            color: var(--bamboo-light-green);
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .sidenav a {
+            padding: 12px 25px;
+            text-decoration: none;
+            font-size: 14px;
+            color: #BDC3C7;
+            display: block;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+
+        .sidenav a:hover {
+            background: rgba(46, 204, 113, 0.1);
+            color: var(--bamboo-light-green);
+            border-left-color: var(--bamboo-green);
+        }
+
+        .sidenav a.active {
+            background: rgba(46, 204, 113, 0.15);
+            color: var(--bamboo-green);
+            border-left-color: var(--bamboo-green);
+            font-weight: 600;
+        }
+
+        .sidenav .nav-section {
+            padding: 20px 25px 10px;
+            color: var(--bamboo-light-green);
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .back-to-hub {
+            padding: 12px 25px;
+            text-decoration: none;
+            font-size: 14px;
+            color: #BDC3C7;
+            display: block;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 10px;
+        }
+
+        .back-to-hub:hover {
+            background: rgba(46, 204, 113, 0.1);
+            color: var(--bamboo-light-green);
+            border-left-color: var(--bamboo-green);
+        }
+
+        .back-to-hub::before {
+            content: '← ';
+            margin-right: 5px;
+        }
+
+        /* Main Content */
+        .main {
+            margin-left: 280px;
+            padding: 40px;
+            max-width: 1400px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--bamboo-green) 0%, var(--bamboo-dark-green) 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 20px rgba(46, 204, 113, 0.3);
+        }
+
+        .header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* Alert Box */
+        .alert {
+            background: #FFF3CD;
+            border-left: 4px solid var(--orange);
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+
+        .alert strong {
+            color: var(--orange);
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+
+        .card h2 {
+            color: var(--bamboo-dark);
+            font-size: 28px;
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--bamboo-green);
+            padding-bottom: 10px;
+        }
+
+        .card h3 {
+            color: var(--bamboo-dark-green);
+            font-size: 22px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .card h4 {
+            color: var(--text-dark);
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        /* Problem Headers */
+        .problem-header {
+            background: linear-gradient(135deg, var(--bamboo-navy) 0%, var(--bamboo-dark) 100%);
+            color: white;
+            padding: 30px 40px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(26, 58, 82, 0.3);
+        }
+
+        .problem-header h2 {
+            font-size: 32px;
+            border: none;
+            padding: 0;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .problem-header .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .stat-box {
+            background: var(--bg-light);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--bamboo-green);
+        }
+
+        .stat-box .label {
+            font-size: 13px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .stat-box .value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .stat-box.negative {
+            border-left-color: var(--red);
+        }
+
+        .stat-box.warning {
+            border-left-color: var(--orange);
+        }
+
+        /* Campaign Box */
+        .campaign-box {
+            background: #F0F8F4;
+            border: 2px solid var(--bamboo-light-green);
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .campaign-box h4 {
+            color: var(--bamboo-dark-green);
+            margin-top: 0;
+        }
+
+        .campaign-box .campaign-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .campaign-box .meta-item {
+            font-size: 14px;
+        }
+
+        .campaign-box .meta-item strong {
+            color: var(--bamboo-dark-green);
+        }
+
+        /* Email Template */
+        .email-template {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            font-family: Georgia, serif;
+        }
+
+        .email-template .subject {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .email-template .content {
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        /* Code Block */
+        .code-block {
+            background: #F6F8FA;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        ul li, ol li {
+            margin-bottom: 8px;
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        .badge.primary {
+            background: var(--bamboo-light-green);
+            color: var(--bamboo-dark-green);
+        }
+
+        .badge.danger {
+            background: #FADBD8;
+            color: var(--red);
+        }
+
+        .badge.warning {
+            background: #FCF3CF;
+            color: var(--orange);
+        }
+
+        .badge.info {
+            background: #D6EAF8;
+            color: var(--blue);
+        }
+
+        /* Timeline */
+        .timeline {
+            margin: 25px 0;
+        }
+
+        .timeline-item {
+            padding: 20px;
+            background: white;
+            border-left: 4px solid var(--bamboo-green);
+            margin-bottom: 15px;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .timeline-item h5 {
+            color: var(--bamboo-dark-green);
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table th {
+            background: var(--bamboo-dark);
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        table td {
+            padding: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        table tr:hover {
+            background: var(--bg-light);
+        }
+
+        /* Checklist */
+        .checklist {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .checklist li {
+            padding: 10px;
+            padding-left: 35px;
+            position: relative;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .checklist li:before {
+            content: '☐';
+            position: absolute;
+            left: 10px;
+            color: var(--bamboo-green);
+            font-size: 18px;
+        }
+
+        /* Calendar Styles */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .calendar-header {
+            background: var(--bamboo-dark);
+            color: white;
+            padding: 12px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+            border-radius: 6px 6px 0 0;
+        }
+
+        .calendar-day {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 12px;
+            min-height: 180px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .calendar-day:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .calendar-day.empty {
+            background: var(--bg-light);
+            border-style: dashed;
+            border-color: #ddd;
+        }
+
+        .day-number {
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--bamboo-dark);
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .day-content {
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .problem-tag {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+
+        .problem-tag.funding {
+            background: rgba(52, 152, 219, 0.15);
+            color: var(--blue);
+        }
+
+        .problem-tag.activity {
+            background: rgba(243, 156, 18, 0.15);
+            color: var(--orange);
+        }
+
+        .problem-tag.revenue {
+            background: rgba(46, 204, 113, 0.15);
+            color: var(--bamboo-dark-green);
+        }
+
+        .problem-tag.multiple {
+            background: rgba(155, 89, 182, 0.15);
+            color: #8E44AD;
+        }
+
+        .campaign-name {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin: 4px 0;
+            font-size: 11px;
+        }
+
+        .asset-type {
+            color: var(--text-light);
+            font-size: 11px;
+            margin: 3px 0;
+        }
+
+        .goal-text {
+            color: var(--bamboo-dark-green);
+            font-size: 11px;
+            font-weight: 600;
+            margin-top: 6px;
+            padding-top: 6px;
+            border-top: 1px solid var(--border);
+        }
+
+        .week-header {
+            background: linear-gradient(135deg, var(--bamboo-navy) 0%, var(--bamboo-dark) 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 30px 0 15px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 900px) {
+            .sidenav {
+                width: 0;
+                padding: 0;
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .calendar-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .sidenav {
+                display: none;
+            }
+
+            .main {
+                margin-left: 0;
+            }
+        }
+    </style>
+    </style>
+</head>
+<body>
+    <!-- Side Navigation -->
+    <div class="sidenav">
+        <div class="logo">
+            <h1>🎋 MyBambu</h1>
+            <p>Q4 2025 Action Plan</p>
+        </div>
+
+        <a href="index.html" class="back-to-hub">Back to Hub</a>
+
+        <div class="nav-section">Project Management</div>
+        <a href="#calendar">📅 Execution Calendar</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#checklist">Quick Start Checklist</a>
+
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+        <!-- Header -->
+        <div class="header">
+            <h1>Project Management</h1>
+            <p>MyBambu Q4 2025 Action Plan</p>
+        </div>
+
+        <div class="problem-header" style="background: linear-gradient(135deg, #3498DB 0%, #2980B9 100%);">
+            <h2>📋 PROJECT MANAGEMENT</h2>
+            <div class="subtitle">Timeline & Implementation Checklist</div>
+        </div>
+
+        <!-- EXECUTION CALENDAR -->
+        <div id="calendar" class="card">
+            <h2>📅 Daily Execution Calendar</h2>
+            <p style="color: var(--text-light); margin-bottom: 20px;">Visual overview of daily marketing activities prioritized by problem severity.</p>
+
+            <div class="alert">
+                <strong>Priority Order by Problem Size:</strong><br>
+                <span class="problem-tag activity">Activity: 99K users</span> (34K lost + 65K inactive) - HIGHEST PRIORITY<br>
+                <span class="problem-tag revenue">Revenue: IMT Holiday</span> - HIGH (Time-sensitive Nov-Dec)<br>
+                <span class="problem-tag funding">Funding: DD Growth</span> - MEDIUM (2-3K core users)<br>
+                <span class="problem-tag multiple">Multiple</span> - Combined efforts
+            </div>
+
+            <!-- Week 1: November 8-14 -->
+            <div class="week-header">Week 1: November 8-14, 2025 - ACTIVITY FOCUS (Launch 99K user recovery)</div>
+            <div class="calendar-grid">
+                <div class="calendar-header">Saturday</div>
+                <div class="calendar-header">Sunday</div>
+                <div class="calendar-header">Monday</div>
+                <div class="calendar-header">Tuesday</div>
+                <div class="calendar-header">Wednesday</div>
+                <div class="calendar-header">Thursday</div>
+                <div class="calendar-header">Friday</div>
+
+                <!-- Nov 8 - Saturday -->
+                <div class="calendar-day">
+                    <div class="day-number">Nov 8</div>
+                    <div class="day-content">
+                        <span class="problem-tag activity">Activity</span>
+                        <div class="campaign-name">Campaign C: Lost Customers</div>
+                        <div class="asset-type">📧 Email 1 (bilingual)</div>
+                        <div class="asset-type">🔔 Push notification</div>
+                        <div class="goal-text">34K users - 15% reactivation</div>
+                    </div>
+                </div>
+
+                <!-- Nov 9 - Sunday -->
+                <div class="calendar-day empty">
+                    <div class="day-number">Nov 9</div>
+                </div>
+
+                <!-- Nov 10 - Monday -->
+                <div class="calendar-day">
+                    <div class="day-number">Nov 10</div>
+                    <div class="day-content">
+                        <span class="problem-tag activity">Activity</span>
+                        <div class="campaign-name">Campaign D: Inactive Users</div>
+                        <div class="asset-type">📧 Email (bilingual)</div>
+                        <div class="asset-type">🔔 Push notification</div>
+                        <div class="goal-text">65K users - 10% activation</div>
+                    </div>
+                </div>
+
+                <!-- Nov 11 - Tuesday -->
+                <div class="calendar-day">
+                    <div class="day-number">Nov 11</div>
+                    <div class="day-content">
+                        <span class="problem-tag activity">Activity</span>
+                        <div class="campaign-name">Social: Customer Reactivation</div>
+                        <div class="asset-type">📱 FB + IG Post (Spanish)</div>
+                        <div class="goal-text">Lost customer messaging</div>
+                    </div>
+                </div>
+
+                <!-- Nov 12 - Wednesday -->
+                <div class="calendar-day">
+                    <div class="day-number">Nov 12</div>
+                    <div class="day-content">
+                        <span class="problem-tag activity">Activity</span>
+                        <div class="campaign-name">Campaign E: Cluster Growth</div>
+                        <div class="asset-type">📧 Email (bilingual)</div>
+                        <div class="asset-type">📱 In-App message</div>
+                        <div class="goal-text">20% tier increase</div>
+                    </div>
+                </div>
+
+                <!-- Nov 13 - Thursday -->
+                <div class="calendar-day">
+                    <div class="day-number">Nov 13</div>
+                    <div class="day-content">
+                        <span class="problem-tag activity">Activity</span>
+                        <div class="campaign-name">Campaign C: Follow-up</div>
+                        <div class="asset-type">📧 Email 2 (personalized)</div>
+                        <div class="goal-text">Re-engage by product usage</div>
+                    </div>
+                </div>
+
+                <!-- Nov 14 - Friday -->
+                <div class="calendar-day">
+                    <div class="day-number">Nov 14</div>
+                    <div class="day-content">
+                        <span class="problem-tag activity">Activity</span>
+                        <div class="campaign-name">Campaign D: Follow-up</div>
+                        <div class="asset-type">🔔 Push notification</div>
+                        <div class="asset-type">📱 In-App message</div>
+                        <div class="goal-text">Inactive user re-engagement</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Week 2: November 15-21 -->
+            <div class="week-header">Week 2: November 15-21, 2025 - ACTIVITY continues + REVENUE begins (Thanksgiving prep)</div>
+            <div class="calendar-grid">
+                <div class="calendar-header">Saturday</div>
+                <div class="calendar-header">Sunday</div>
+                <div class="calendar-header">Monday</div>
+                <div class="calendar-header">Tuesday</div>
+                <div class="calendar-header">Wednesday</div>
+                <div class="calendar-header">Thursday</div>
+                <div class="calendar-header">Friday</div>
+
+                <!-- Nov 15 - Saturday -->
+                <div class="calendar-day">
+                    <div class="day-number">Nov 15</div>
+                    <div class="day-content">
+                        <span class="problem-tag revenue">Revenue</span>
+                        <div class="campaign-name">Campaign F: IMT Holiday</div>
+                        <div class="asset-type">📧 Email 1 (bilingual)</div>
+                        <div class="asset-type">🔔 Push notification</div>
+                        <div class="goal-text">20% IMT increase</div>
+                    </div>
+                </div>
+
+                <!-- Nov 16 - Sunday -->
+                <div class="calendar-day empty">
+                    <div class="day-number">Nov 16</div>
+                </div>
+
+                <!-- Nov 17 - Monday -->
+                <div class="calendar-day">
+                    <div class="day-number">Nov 17</div>
+                    <div class="day-content">
+                        <span class="problem-tag activity">Activity</span>
+                        <div class="campaign-name">Campaign D: Re-engagement</div>
+                        <div class="asset-type">🔔 Push notification</div>
+                        <div class="asset-type">📱 In-App message</div>
+                        <div class="goal-text">65K inactive users</div>
+                    </div>
+                </div>
+
+                <!-- Nov 18 - Tuesday -->
+                <div class="calendar-day">
+                    <div class="day-number">Nov 18</div>
+                    <div class="day-content">
+                        <span class="problem-tag activity">Activity</span>
+                        <div class="campaign-name">Social: Multi-Product Usage</div>
+                        <div class="asset-type">📱 FB + IG Post (Spanish)</div>
+                        <div class="goal-text">Reduce churn via 2+ products</div>
+                    </div>
+                </div>
+
+                <!-- Nov 19 - Wednesday -->
+                <div class="calendar-day">
+                    <div class="day-number">Nov 19</div>
+                    <div class="day-content">
+                        <span class="problem-tag activity">Activity</span>
+                        <div class="campaign-name">Campaign C: BIG INCENTIVE</div>
+                        <div class="asset-type">📧 Email 3 (bilingual)</div>
+                        <div class="asset-type">🔔 Push notification</div>
+                        <div class="goal-text">4 free transfers - 34K users</div>
+                    </div>
+                </div>
+
+                <!-- Nov 20 - Thursday -->
+                <div class="calendar-day">
+                    <div class="day-number">Nov 20</div>
+                    <div class="day-content">
+                        <span class="problem-tag activity">Activity</span>
+                        <div class="campaign-name">Campaign E: Cluster Push</div>
+                        <div class="asset-type">🔔 Push notification</div>
+                        <div class="asset-type">📱 In-App message</div>
+                        <div class="goal-text">Move users up tiers</div>
+                    </div>
+                </div>
+
+                <!-- Nov 21 - Friday -->
+                <div class="calendar-day">
+                    <div class="day-number">Nov 21</div>
+                    <div class="day-content">
+                        <span class="problem-tag activity">Activity</span>
+                        <div class="campaign-name">Social: Customer Success Stories</div>
+                        <div class="asset-type">📱 FB + IG Post (Spanish)</div>
+                        <div class="goal-text">Retention messaging</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Week 3: November 22-28 (Thanksgiving) -->
+            <div class="week-header">Week 3: November 22-28, 2025 - REVENUE + ACTIVITY equal (Thanksgiving)</div>
+            <div class="calendar-grid">
+                <div class="calendar-header">Saturday</div>
+                <div class="calendar-header">Sunday</div>
+                <div class="calendar-header">Monday</div>
+                <div class="calendar-header">Tuesday</div>
+                <div class="calendar-header">Wednesday</div>
+                <div class="calendar-header">Thursday</div>
+                <div class="calendar-header">Friday</div>
+
+                <!-- Nov 22 - Saturday -->
+                <div class="calendar-day">
+                    <div class="day-number">Nov 22</div>
+                    <div class="day-content">
+                        <span class="problem-tag revenue">Revenue</span>
+                        <div class="campaign-name">Campaign F: Family Gratitude</div>
+                        <div class="asset-type">📧 Email 2 (bilingual)</div>
+                        <div class="asset-type">🔔 Push notification</div>
+                        <div class="asset-type">📱 Social post (Spanish)</div>
+                        <div class="goal-text">Thanksgiving IMT push</div>
+                    </div>
+                </div>
+
+                <!-- Nov 23 - Sunday -->
+                <div class="calendar-day empty">
+                    <div class="day-number">Nov 23</div>
+                </div>
+
+                <!-- Nov 24 - Monday -->
+                <div class="calendar-day">
+                    <div class="day-number">Nov 24</div>
+                    <div class="day-content">
+                        <span class="problem-tag activity">Activity</span>
+                        <div class="campaign-name">Campaign C: Re-engagement</div>
+                        <div class="asset-type">🔔 Push notification</div>
+                        <div class="asset-type">📱 In-App message</div>
+                        <div class="goal-text">34K lost customers</div>
+                    </div>
+                </div>
+
+                <!-- Nov 25 - Tuesday -->
+                <div class="calendar-day">
+                    <div class="day-number">Nov 25</div>
+                    <div class="day-content">
+                        <span class="problem-tag revenue">Revenue</span>
+                        <div class="campaign-name">Campaign G: Price Comparison</div>
+                        <div class="asset-type">📧 Email (bilingual)</div>
+                        <div class="asset-type">📱 Social post (Spanish)</div>
+                        <div class="goal-text">$0.85 vs $1.99 message</div>
+                    </div>
+                </div>
+
+                <!-- Nov 26 - Wednesday -->
+                <div class="calendar-day">
+                    <div class="day-number">Nov 26</div>
+                    <div class="day-content">
+                        <span class="problem-tag activity">Activity</span>
+                        <div class="campaign-name">Campaign D: Re-engagement</div>
+                        <div class="asset-type">🔔 Push notification</div>
+                        <div class="goal-text">65K inactive users</div>
+                    </div>
+                </div>
+
+                <!-- Nov 27 - Thursday (Thanksgiving) -->
+                <div class="calendar-day">
+                    <div class="day-number">Nov 27</div>
+                    <div class="day-content">
+                        <span class="problem-tag revenue">Revenue</span>
+                        <div class="campaign-name">Social: Holiday Gratitude</div>
+                        <div class="asset-type">📱 FB + IG Post (Spanish)</div>
+                        <div class="goal-text">Thanksgiving family support</div>
+                    </div>
+                </div>
+
+                <!-- Nov 28 - Friday -->
+                <div class="calendar-day">
+                    <div class="day-number">Nov 28</div>
+                    <div class="day-content">
+                        <span class="problem-tag activity">Activity</span>
+                        <div class="campaign-name">Campaign E: Cluster Urgency</div>
+                        <div class="asset-type">📱 In-App message</div>
+                        <div class="goal-text">End of month tier push</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Week 4: November 29 - December 5 -->
+            <div class="week-header">Week 4: Nov 29 - Dec 5, 2025 - REVENUE + ACTIVITY balance</div>
+            <div class="calendar-grid">
+                <div class="calendar-header">Saturday</div>
+                <div class="calendar-header">Sunday</div>
+                <div class="calendar-header">Monday</div>
+                <div class="calendar-header">Tuesday</div>
+                <div class="calendar-header">Wednesday</div>
+                <div class="calendar-header">Thursday</div>
+                <div class="calendar-header">Friday</div>
+
+                <!-- Nov 29 -->
+                <div class="calendar-day">
+                    <div class="day-number">Nov 29</div>
+                    <div class="day-content">
+                        <span class="problem-tag revenue">Revenue</span>
+                        <div class="campaign-name">Campaign F: End of Month</div>
+                        <div class="asset-type">📧 Email 3 (bilingual)</div>
+                        <div class="asset-type">🔔 Push notification</div>
+                        <div class="asset-type">📱 Social post (Spanish)</div>
+                        <div class="goal-text">Bill payment IMT push</div>
+                    </div>
+                </div>
+
+                <!-- Nov 30 -->
+                <div class="calendar-day">
+                    <div class="day-number">Nov 30</div>
+                    <div class="day-content">
+                        <span class="problem-tag activity">Activity</span>
+                        <div class="campaign-name">Campaign E: URGENT Month-end</div>
+                        <div class="asset-type">🔔 Push notification</div>
+                        <div class="asset-type">📱 In-App message</div>
+                        <div class="goal-text">2 more TX for tier increase</div>
+                    </div>
+                </div>
+
+                <!-- Dec 1 -->
+                <div class="calendar-day">
+                    <div class="day-number">Dec 1</div>
+                    <div class="day-content">
+                        <span class="problem-tag activity">Activity</span>
+                        <div class="campaign-name">Campaign C/D: Check-in</div>
+                        <div class="asset-type">📱 In-App message</div>
+                        <div class="goal-text">99K user re-engagement</div>
+                    </div>
+                </div>
+
+                <!-- Dec 2 -->
+                <div class="calendar-day">
+                    <div class="day-number">Dec 2</div>
+                    <div class="day-content">
+                        <span class="problem-tag revenue">Revenue</span>
+                        <div class="campaign-name">Campaign G: Price Comparison</div>
+                        <div class="asset-type">📧 Email (bilingual)</div>
+                        <div class="asset-type">📱 In-App message</div>
+                        <div class="goal-text">$0.85 vs competitors</div>
+                    </div>
+                </div>
+
+                <!-- Dec 3 -->
+                <div class="calendar-day">
+                    <div class="day-number">Dec 3</div>
+                    <div class="day-content">
+                        <span class="problem-tag activity">Activity</span>
+                        <div class="campaign-name">Campaign D: Follow-up</div>
+                        <div class="asset-type">🔔 Push notification</div>
+                        <div class="goal-text">65K inactive users</div>
+                    </div>
+                </div>
+
+                <!-- Dec 4 -->
+                <div class="calendar-day">
+                    <div class="day-number">Dec 4</div>
+                    <div class="day-content">
+                        <span class="problem-tag activity">Activity</span>
+                        <div class="campaign-name">Social: Retention Stories</div>
+                        <div class="asset-type">📱 FB + IG Post (Spanish)</div>
+                        <div class="goal-text">Reduce churn messaging</div>
+                    </div>
+                </div>
+
+                <!-- Dec 5 -->
+                <div class="calendar-day">
+                    <div class="day-number">Dec 5</div>
+                    <div class="day-content">
+                        <span class="problem-tag activity">Activity</span>
+                        <div class="campaign-name">Campaign C: Re-engagement</div>
+                        <div class="asset-type">📱 In-App message</div>
+                        <div class="goal-text">34K lost customers</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Week 5: December 6-12 -->
+            <div class="week-header">Week 5: December 6-12, 2025 - REVENUE priority (Christmas 3 weeks) + ACTIVITY ongoing</div>
+            <div class="calendar-grid">
+                <div class="calendar-header">Saturday</div>
+                <div class="calendar-header">Sunday</div>
+                <div class="calendar-header">Monday</div>
+                <div class="calendar-header">Tuesday</div>
+                <div class="calendar-header">Wednesday</div>
+                <div class="calendar-header">Thursday</div>
+                <div class="calendar-header">Friday</div>
+
+                <!-- Dec 6 -->
+                <div class="calendar-day">
+                    <div class="day-number">Dec 6</div>
+                    <div class="day-content">
+                        <span class="problem-tag revenue">Revenue</span>
+                        <div class="campaign-name">Campaign F: Christmas Prep</div>
+                        <div class="asset-type">📧 Email 4 (bilingual)</div>
+                        <div class="asset-type">🔔 Push notification</div>
+                        <div class="asset-type">📱 Social post (Spanish)</div>
+                        <div class="goal-text">3 weeks to Christmas</div>
+                    </div>
+                </div>
+
+                <!-- Dec 7 -->
+                <div class="calendar-day empty">
+                    <div class="day-number">Dec 7</div>
+                </div>
+
+                <!-- Dec 8 -->
+                <div class="calendar-day empty">
+                    <div class="day-number">Dec 8</div>
+                </div>
+
+                <!-- Dec 9 -->
+                <div class="calendar-day">
+                    <div class="day-number">Dec 9</div>
+                    <div class="day-content">
+                        <span class="problem-tag activity">Activity</span>
+                        <div class="campaign-name">Campaign C/D: Check-in</div>
+                        <div class="asset-type">📱 In-App message</div>
+                        <div class="goal-text">99K user engagement</div>
+                    </div>
+                </div>
+
+                <!-- Dec 10 -->
+                <div class="calendar-day">
+                    <div class="day-number">Dec 10</div>
+                    <div class="day-content">
+                        <span class="problem-tag revenue">Revenue</span>
+                        <div class="campaign-name">Campaign G: Price Push</div>
+                        <div class="asset-type">🔔 Push notification</div>
+                        <div class="asset-type">📱 Social post (Spanish)</div>
+                        <div class="goal-text">$0.85 Christmas savings</div>
+                    </div>
+                </div>
+
+                <!-- Dec 11 -->
+                <div class="calendar-day">
+                    <div class="day-number">Dec 11</div>
+                    <div class="day-content">
+                        <span class="problem-tag activity">Activity</span>
+                        <div class="campaign-name">Campaign E: Cluster Push</div>
+                        <div class="asset-type">📱 In-App message</div>
+                        <div class="goal-text">Holiday activity boost</div>
+                    </div>
+                </div>
+
+                <!-- Dec 12 -->
+                <div class="calendar-day">
+                    <div class="day-number">Dec 12</div>
+                    <div class="day-content">
+                        <span class="problem-tag activity">Activity</span>
+                        <div class="campaign-name">Social: Retention Stories</div>
+                        <div class="asset-type">📱 FB + IG Post (Spanish)</div>
+                        <div class="goal-text">Customer loyalty</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Week 6: December 13-19 -->
+            <div class="week-header">Week 6: December 13-19, 2025 - REVENUE dominant (2 weeks to Christmas) + ACTIVITY continues</div>
+            <div class="calendar-grid">
+                <div class="calendar-header">Saturday</div>
+                <div class="calendar-header">Sunday</div>
+                <div class="calendar-header">Monday</div>
+                <div class="calendar-header">Tuesday</div>
+                <div class="calendar-header">Wednesday</div>
+                <div class="calendar-header">Thursday</div>
+                <div class="calendar-header">Friday</div>
+
+                <!-- Dec 13 -->
+                <div class="calendar-day">
+                    <div class="day-number">Dec 13</div>
+                    <div class="day-content">
+                        <span class="problem-tag revenue">Revenue</span>
+                        <div class="campaign-name">Campaign F: 2 Weeks Warning</div>
+                        <div class="asset-type">🔔 Push notification</div>
+                        <div class="goal-text">Urgency messaging</div>
+                    </div>
+                </div>
+
+                <!-- Dec 14 -->
+                <div class="calendar-day empty">
+                    <div class="day-number">Dec 14</div>
+                </div>
+
+                <!-- Dec 15 -->
+                <div class="calendar-day empty">
+                    <div class="day-number">Dec 15</div>
+                </div>
+
+                <!-- Dec 16 -->
+                <div class="calendar-day">
+                    <div class="day-number">Dec 16</div>
+                    <div class="day-content">
+                        <span class="problem-tag activity">Activity</span>
+                        <div class="campaign-name">Campaign D: Re-engagement</div>
+                        <div class="asset-type">🔔 Push notification</div>
+                        <div class="goal-text">65K inactive - Holiday reminder</div>
+                    </div>
+                </div>
+
+                <!-- Dec 17 -->
+                <div class="calendar-day">
+                    <div class="day-number">Dec 17</div>
+                    <div class="day-content">
+                        <span class="problem-tag revenue">Revenue</span>
+                        <div class="campaign-name">Campaign F: Christmas Reminder</div>
+                        <div class="asset-type">📧 Email (bilingual)</div>
+                        <div class="asset-type">🔔 Push notification</div>
+                        <div class="goal-text">1 week to Christmas</div>
+                    </div>
+                </div>
+
+                <!-- Dec 18 -->
+                <div class="calendar-day">
+                    <div class="day-number">Dec 18</div>
+                    <div class="day-content">
+                        <span class="problem-tag activity">Activity</span>
+                        <div class="campaign-name">Campaign C: Final Push</div>
+                        <div class="asset-type">📱 In-App message</div>
+                        <div class="goal-text">34K lost - Last attempt</div>
+                    </div>
+                </div>
+
+                <!-- Dec 19 -->
+                <div class="calendar-day">
+                    <div class="day-number">Dec 19</div>
+                    <div class="day-content">
+                        <span class="problem-tag revenue">Revenue</span>
+                        <div class="campaign-name">Social: Price Comparison</div>
+                        <div class="asset-type">📱 FB + IG Post (Spanish)</div>
+                        <div class="goal-text">Last minute savings</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Week 7: December 20-26 -->
+            <div class="week-header">Week 7: December 20-26, 2025 - REVENUE peak (Christmas week)</div>
+            <div class="calendar-grid">
+                <div class="calendar-header">Saturday</div>
+                <div class="calendar-header">Sunday</div>
+                <div class="calendar-header">Monday</div>
+                <div class="calendar-header">Tuesday</div>
+                <div class="calendar-header">Wednesday</div>
+                <div class="calendar-header">Thursday</div>
+                <div class="calendar-header">Friday</div>
+
+                <!-- Dec 20 -->
+                <div class="calendar-day">
+                    <div class="day-number">Dec 20</div>
+                    <div class="day-content">
+                        <span class="problem-tag revenue">Revenue</span>
+                        <div class="campaign-name">Campaign F: Last Chance</div>
+                        <div class="asset-type">📧 Email 5 (bilingual)</div>
+                        <div class="asset-type">🔔 Push notification</div>
+                        <div class="asset-type">📱 Social post (Spanish)</div>
+                        <div class="goal-text">Final IMT push</div>
+                    </div>
+                </div>
+
+                <!-- Dec 21 -->
+                <div class="calendar-day">
+                    <div class="day-number">Dec 21</div>
+                    <div class="day-content">
+                        <span class="problem-tag revenue">Revenue</span>
+                        <div class="campaign-name">Last Chance Reminders</div>
+                        <div class="asset-type">📱 In-App message</div>
+                        <div class="goal-text">5 days to Christmas</div>
+                    </div>
+                </div>
+
+                <!-- Dec 22 -->
+                <div class="calendar-day empty">
+                    <div class="day-number">Dec 22</div>
+                </div>
+
+                <!-- Dec 23 -->
+                <div class="calendar-day empty">
+                    <div class="day-number">Dec 23</div>
+                </div>
+
+                <!-- Dec 24 - Christmas Eve -->
+                <div class="calendar-day empty">
+                    <div class="day-number">Dec 24</div>
+                </div>
+
+                <!-- Dec 25 - Christmas -->
+                <div class="calendar-day empty">
+                    <div class="day-number">Dec 25</div>
+                </div>
+
+                <!-- Dec 26 -->
+                <div class="calendar-day">
+                    <div class="day-number">Dec 26</div>
+                    <div class="day-content">
+                        <span class="problem-tag multiple">Multiple</span>
+                        <div class="campaign-name">Thank You + New Year</div>
+                        <div class="asset-type">📧 Email (bilingual)</div>
+                        <div class="asset-type">📱 Social post (Spanish)</div>
+                        <div class="goal-text">Gratitude + NY prep</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Week 8: December 27-31 -->
+            <div class="week-header">Week 8: December 27-31, 2025 - New Year prep + ACTIVITY wrap-up</div>
+            <div class="calendar-grid">
+                <div class="calendar-header">Saturday</div>
+                <div class="calendar-header">Sunday</div>
+                <div class="calendar-header">Monday</div>
+                <div class="calendar-header">Tuesday</div>
+                <div class="calendar-header">Wednesday</div>
+                <div class="calendar-header">Thursday</div>
+                <div class="calendar-header">Friday</div>
+
+                <!-- Dec 27 -->
+                <div class="calendar-day empty">
+                    <div class="day-number">Dec 27</div>
+                </div>
+
+                <!-- Dec 28 -->
+                <div class="calendar-day empty">
+                    <div class="day-number">Dec 28</div>
+                </div>
+
+                <!-- Dec 29 -->
+                <div class="calendar-day">
+                    <div class="day-number">Dec 29</div>
+                    <div class="day-content">
+                        <span class="problem-tag revenue">Revenue</span>
+                        <div class="campaign-name">New Year Prep</div>
+                        <div class="asset-type">📱 Social post (Spanish)</div>
+                        <div class="goal-text">End of year push</div>
+                    </div>
+                </div>
+
+                <!-- Dec 30 -->
+                <div class="calendar-day">
+                    <div class="day-number">Dec 30</div>
+                    <div class="day-content">
+                        <span class="problem-tag funding">Funding</span>
+                        <div class="campaign-name">Direct Deposit</div>
+                        <div class="asset-type">📧 Email reminder</div>
+                        <div class="goal-text">Start 2026 right</div>
+                    </div>
+                </div>
+
+                <!-- Dec 31 - New Year's Eve -->
+                <div class="calendar-day">
+                    <div class="day-number">Dec 31</div>
+                    <div class="day-content">
+                        <span class="problem-tag multiple">Multiple</span>
+                        <div class="campaign-name">Year-End Message</div>
+                        <div class="asset-type">📱 Social post (Spanish)</div>
+                        <div class="goal-text">Happy New Year</div>
+                    </div>
+                </div>
+
+                <div class="calendar-day empty"></div>
+                <div class="calendar-day empty"></div>
+            </div>
+        </div>
+
+        <div id="timeline" class="card">
+            <h2>📅 Implementation Timeline</h2>
+
+            <h3>WEEK 1 (Nov 8-14)</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h5>BI Requests (Due: Day 1)</h5>
+                    <ul class="checklist">
+                        <li>Submit all 8 audience segment requests</li>
+                        <li>Set deadline: 3 business days</li>
+                        <li>Segments: Lost_Customers_Oct2025, Inactive_Current_Nov2025, New_NoCard_Funding, HasCard_LowFunding, DirectDeposit_Churned, GigEconomy_DirectDeposit_Eligible, Clusters_Shappire_Ruby, Cluster_Decreased_Oct</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h5>CRM Setup (Due: Day 3)</h5>
+                    <ul class="checklist">
+                        <li>Copy all email templates into email platform</li>
+                        <li>Set up email sequences for Campaigns A-G</li>
+                        <li>Configure in-app message triggers</li>
+                        <li>Schedule push notifications</li>
+                        <li>Brief Customer Care on expected email responses</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h5>Social Media (1.5 hours total)</h5>
+                    <ul class="checklist">
+                        <li>Write all 8 November posts in Notes app (1 hour)</li>
+                        <li>Create 2 price comparison graphics in Canva (30 min)</li>
+                        <li>Schedule first 2 posts on Facebook</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h5>Campaign Launches</h5>
+                    <ul>
+                        <li><strong>Day 1:</strong> Lost customer email (Campaign C) + Social post 1</li>
+                        <li><strong>Day 2:</strong> Direct deposit campaign (Campaign A)</li>
+                        <li><strong>Day 4:</strong> Social post 2</li>
+                        <li><strong>Day 5:</strong> Inactive user email (Campaign D)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>WEEK 2 (Nov 15-21)</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h5>CRM</h5>
+                    <ul>
+                        <li>Monitor Campaign C & D performance</li>
+                        <li>Send follow-up emails (email 2 of series)</li>
+                        <li>Launch cluster growth campaign (Campaign E)</li>
+                        <li>Begin A/B testing subject lines</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h5>Social Media</h5>
+                    <ul>
+                        <li>Post 2x (Mon & Thu)</li>
+                        <li>Respond to comments daily (10 min)</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h5>Optimization</h5>
+                    <ul>
+                        <li>Review first week metrics</li>
+                        <li>Adjust send times if needed</li>
+                        <li>Pause underperforming messages</li>
+                        <li>Scale winning campaigns</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>WEEK 3 (Nov 22-28) - THANKSGIVING WEEK</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h5>CRM - Heavy IMT Push</h5>
+                    <ul>
+                        <li>Heavy push on IMT (Campaign F - Email 2)</li>
+                        <li>Follow-up on non-openers from Week 1-2</li>
+                        <li>Send family gratitude messages</li>
+                        <li>In-app messages: "Show your family you care - Send money home"</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h5>Social Media</h5>
+                    <ul>
+                        <li>Post 3x: Family gratitude + Price comparison + Direct deposit</li>
+                        <li>Stories: 3-5 per week</li>
+                        <li>Respond to comments daily (10 min)</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h5>Monitor</h5>
+                    <ul>
+                        <li>IMT transaction volume (CRITICAL)</li>
+                        <li>Email open/click rates</li>
+                        <li>Social engagement</li>
+                        <li>User feedback</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>WEEK 4 (Nov 29 - Dec 5) - END OF MONTH SUPPORT</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h5>CRM</h5>
+                    <ul>
+                        <li>End of Month Support email (Campaign F - Email 3)</li>
+                        <li>Price comparison emphasis (Campaign G)</li>
+                        <li>Re-engage non-converters from previous campaigns</li>
+                        <li>Push notification: End of Month Support messaging</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h5>Social Media</h5>
+                    <ul>
+                        <li>Post 2x: End of Month Support post + Direct deposit</li>
+                        <li>Write all 8 December posts (1 hour)</li>
+                        <li>Respond to comments daily (10 min)</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h5>Analysis</h5>
+                    <ul>
+                        <li>Mid-campaign performance review</li>
+                        <li>Identify winning messages</li>
+                        <li>Document learnings</li>
+                        <li>Adjust Week 5-8 strategy</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>WEEKS 5-8 (Dec 6-31) - CHRISTMAS PUSH</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h5>CRM</h5>
+                    <ul>
+                        <li>Christmas email series (Campaign F - Emails 4-5)</li>
+                        <li>Urgency messaging ("Last chance before Christmas")</li>
+                        <li>Final push on inactive/lost users</li>
+                        <li>Year-end "Thank you" message</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h5>Social Media</h5>
+                    <ul>
+                        <li>Post 2x per week: Christmas focus + rotation</li>
+                        <li>Respond to comments daily (10 min)</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h5>Key Dates</h5>
+                    <ul>
+                        <li><strong>Dec 6:</strong> "3 weeks until Christmas" email + social post</li>
+                        <li><strong>Dec 13:</strong> "2 weeks until Christmas" push notification</li>
+                        <li><strong>Dec 20:</strong> "Last chance!" email + social post</li>
+                        <li><strong>Dec 26:</strong> "Thank you" + "Send money for New Year"</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="checklist" class="card">
+            <h2>✅ Quick Start Checklist</h2>
+
+            <h3>IMMEDIATE (This Week)</h3>
+            <ul class="checklist">
+                <li>Submit all 8 BI audience requests to data team</li>
+                <li>Copy email templates into email platform</li>
+                <li>Set up first 3 email campaigns (A, C, D)</li>
+                <li>Write all 8 November social posts in Notes app (1 hour)</li>
+                <li>Create 2 price comparison graphics in Canva (30 min)</li>
+                <li>Schedule Week 1 emails</li>
+                <li>Schedule first 2 Facebook posts</li>
+                <li>Set up in-app message triggers</li>
+                <li>Write push notification copy</li>
+                <li>Brief Customer Care on expected email responses</li>
+            </ul>
+
+            <h3>WEEK 2</h3>
+            <ul class="checklist">
+                <li>Launch all campaigns</li>
+                <li>Monitor first 48 hours closely</li>
+                <li>Respond to all user responses</li>
+                <li>Adjust based on initial data</li>
+                <li>Post 2x on Facebook (Mon & Thu)</li>
+                <li>Respond to comments daily (10 min)</li>
+            </ul>
+
+            <h3>WEEK 4</h3>
+            <ul class="checklist">
+                <li>Write all 8 December social posts (1 hour)</li>
+                <li>Schedule December posts</li>
+                <li>Mid-campaign analysis and optimization</li>
+            </ul>
+
+            <h3>ONGOING</h3>
+            <ul class="checklist">
+                <li>Daily: Respond to comments on Facebook (10 min)</li>
+                <li>Daily: Monitor campaign performance (5 min)</li>
+                <li>Weekly: Review metrics and optimize (1 hour)</li>
+                <li>Monthly: Batch-create next month's social content (1 hour)</li>
+            </ul>
+        </div>
+
+        <!-- RESOURCES -->
+        <!-- Footer Summary -->
+        <div class="card" style="background: linear-gradient(135deg, var(--bamboo-green) 0%, var(--bamboo-dark-green) 100%); color: white; border: none;">
+            <h2 style="color: white; border-color: white;">🎯 Remember</h2>
+            <ul style="font-size: 16px; line-height: 2;">
+                <li><strong>PRIMARY GOAL:</strong> Improve revenue per customer from $8-12 to $10-14</li>
+                <li><strong>FUNDING:</strong> Virtual card drives both funding AND spending - prioritize it!</li>
+                <li><strong>ACTIVITY:</strong> Reduce transaction frequency from 21 days to 14-18 days</li>
+                <li><strong>REVENUE:</strong> IMT doesn't grow organically in holidays - aggressive push required!</li>
+                <li><strong>COMPETITIVE EDGE:</strong> $0.85 vs $1.99 - no one matches this price</li>
+                <li><strong>STRATEGY:</strong> Be aggressive with competitive messaging - stop being "too nice"</li>
+            </ul>
+            <p style="margin-top: 20px; font-size: 14px; opacity: 0.9;">
+                <strong>Total Time Investment:</strong> 5-6 hours/week | <strong>Team:</strong> 1 person can execute | <strong>Budget:</strong> $0 (organic only)
+            </p>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('.sidenav a:not(.back-to-hub)').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                    // Update active state
+                    document.querySelectorAll('.sidenav a').forEach(a => a.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Update active nav on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.card, .problem-header');
+            const navLinks = document.querySelectorAll('.sidenav a');
+
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

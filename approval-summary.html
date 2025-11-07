@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Executive Approval Summary | MyBambu Q4 Action Plan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bamboo-green: #2ECC71;
+            --bamboo-dark-green: #27AE60;
+            --bamboo-light-green: #A8E6CF;
+            --bamboo-navy: #1A3A52;
+            --bamboo-dark: #0F2537;
+            --text-dark: #2C3E50;
+            --text-light: #7F8C8D;
+            --bg-light: #F8F9FA;
+            --border: #E1E8ED;
+            --white: #FFFFFF;
+            --red: #E74C3C;
+            --orange: #F39C12;
+            --blue: #3498DB;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-light);
+        }
+
+        /* Side Navigation */
+        .sidenav {
+            height: 100%;
+            width: 280px;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            background: var(--bamboo-dark);
+            overflow-x: hidden;
+            overflow-y: auto;
+            padding-top: 20px;
+            padding-bottom: 40px;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        }
+
+        .sidenav .logo {
+            padding: 0 25px 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sidenav .logo h1 {
+            color: var(--bamboo-green);
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .sidenav .logo p {
+            color: var(--bamboo-light-green);
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .sidenav a {
+            padding: 12px 25px;
+            text-decoration: none;
+            font-size: 14px;
+            color: #BDC3C7;
+            display: block;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+
+        .sidenav a:hover {
+            background: rgba(46, 204, 113, 0.1);
+            color: var(--bamboo-light-green);
+            border-left-color: var(--bamboo-green);
+        }
+
+        .sidenav a.active {
+            background: rgba(46, 204, 113, 0.15);
+            color: var(--bamboo-green);
+            border-left-color: var(--bamboo-green);
+            font-weight: 600;
+        }
+
+        .sidenav .nav-section {
+            padding: 20px 25px 10px;
+            color: var(--bamboo-light-green);
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .back-to-hub {
+            padding: 12px 25px;
+            text-decoration: none;
+            font-size: 14px;
+            color: #BDC3C7;
+            display: block;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 10px;
+        }
+
+        .back-to-hub:hover {
+            background: rgba(46, 204, 113, 0.1);
+            color: var(--bamboo-light-green);
+            border-left-color: var(--bamboo-green);
+        }
+
+        .back-to-hub::before {
+            content: '← ';
+            margin-right: 5px;
+        }
+
+        /* Main Content */
+        .main {
+            margin-left: 280px;
+            padding: 40px;
+            max-width: 1400px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--bamboo-navy) 0%, var(--bamboo-dark) 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 20px rgba(26, 58, 82, 0.3);
+        }
+
+        .header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* Alert Box */
+        .alert {
+            background: #E8F5E9;
+            border-left: 4px solid var(--bamboo-green);
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+
+        .alert strong {
+            color: var(--bamboo-dark-green);
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+
+        .card h2 {
+            color: var(--bamboo-dark);
+            font-size: 28px;
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--bamboo-green);
+            padding-bottom: 10px;
+        }
+
+        .card h3 {
+            color: var(--bamboo-dark-green);
+            font-size: 22px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .stat-box {
+            background: var(--bg-light);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--bamboo-green);
+            text-align: center;
+        }
+
+        .stat-box .label {
+            font-size: 13px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .stat-box .value {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--bamboo-dark-green);
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table th {
+            background: var(--bamboo-dark);
+            color: white;
+            padding: 15px 12px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        table td {
+            padding: 15px 12px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        table tr:hover {
+            background: var(--bg-light);
+        }
+
+        /* Example Box */
+        .example-box {
+            background: #F0F8F4;
+            border: 2px solid var(--bamboo-light-green);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            font-size: 14px;
+            font-style: italic;
+        }
+
+        /* Objective Badge */
+        .objective {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            background: rgba(46, 204, 113, 0.15);
+            color: var(--bamboo-dark-green);
+            margin-top: 5px;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 900px) {
+            .sidenav {
+                width: 0;
+                padding: 0;
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .sidenav {
+                display: none;
+            }
+
+            .main {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Side Navigation -->
+    <div class="sidenav">
+        <div class="logo">
+            <h1>🎋 MyBambu</h1>
+            <p>Q4 2025 Action Plan</p>
+        </div>
+
+        <a href="index.html" class="back-to-hub">Back to Hub</a>
+
+        <div class="nav-section">Executive Summary</div>
+        <a href="#overview">Overview</a>
+        <a href="#total-assets">Total Assets</a>
+        <a href="#email">Email Campaigns</a>
+        <a href="#in-app">In-App Messages</a>
+        <a href="#push">Push Notifications</a>
+        <a href="#social">Social Media</a>
+        <a href="#objectives">Key Objectives</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+        <!-- Header -->
+        <div class="header">
+            <h1>Executive Approval Summary</h1>
+            <p>Q4 2025 Marketing Strategy | November - December 2025</p>
+        </div>
+
+        <!-- Overview -->
+        <div id="overview" class="card">
+            <h2>📋 Strategy Overview</h2>
+
+            <div class="alert">
+                <strong>Goal:</strong> Increase revenue per customer from $8-12 to $10-14 by Q1 2026 through targeted CRM campaigns and social media support.
+            </div>
+
+            <p><strong>Approach:</strong> Address three core problems (Funding, Activity, Revenue) through multi-channel campaigns targeting specific user segments with bilingual content (English/Spanish).</p>
+
+            <h3>Timeline</h3>
+            <p><strong>Duration:</strong> 8 weeks (November 8 - December 31, 2025)</p>
+            <p><strong>Channels:</strong> Email, In-App Messages, Push Notifications, Social Media (Facebook & Instagram)</p>
+        </div>
+
+        <!-- Total Assets Summary -->
+        <div id="total-assets" class="card">
+            <h2>📊 Total Marketing Assets</h2>
+
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="label">Email Campaigns</div>
+                    <div class="value">7</div>
+                </div>
+                <div class="stat-box">
+                    <div class="label">In-App Messages</div>
+                    <div class="value">10</div>
+                </div>
+                <div class="stat-box">
+                    <div class="label">Push Notifications</div>
+                    <div class="value">16</div>
+                </div>
+                <div class="stat-box">
+                    <div class="label">Social Media Posts</div>
+                    <div class="value">24</div>
+                </div>
+                <div class="stat-box">
+                    <div class="label">Total Assets</div>
+                    <div class="value">57</div>
+                </div>
+            </div>
+
+            <p style="margin-top: 20px;"><strong>Note:</strong> All CRM content (Email, In-App, Push) is bilingual (English & Spanish). Social media content is Spanish-only for Latin American audience.</p>
+        </div>
+
+        <!-- Email Campaigns -->
+        <div id="email" class="card">
+            <h2>📧 Email Campaigns</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Campaign</th>
+                        <th>Asset Type</th>
+                        <th>Target Audience</th>
+                        <th>Example</th>
+                        <th>Objective</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Campaign A</strong><br>Direct Deposit</td>
+                        <td>2 emails (bilingual)</td>
+                        <td>New accounts, Low funding users</td>
+                        <td>
+                            <div class="example-box">
+                                "Set up once, get paid automatically"<br>
+                                <small>Subject line promoting DD setup with benefits list</small>
+                            </div>
+                        </td>
+                        <td><span class="objective">5% conversion to DD</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Campaign B</strong><br>DD Reactivation</td>
+                        <td>1 email (bilingual)</td>
+                        <td>DD churned users</td>
+                        <td>
+                            <div class="example-box">
+                                "We miss your automatic paychecks"<br>
+                                <small>Win-back email for lapsed DD users</small>
+                            </div>
+                        </td>
+                        <td><span class="objective">10% reactivation</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Campaign C</strong><br>Lost Customers</td>
+                        <td>3 emails (bilingual)</td>
+                        <td>34K lost customers</td>
+                        <td>
+                            <div class="example-box">
+                                "Come back this week = First 4 transfers FREE"<br>
+                                <small>Day 14 incentive email</small>
+                            </div>
+                        </td>
+                        <td><span class="objective">15% reactivation (6,800 users)</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Campaign D</strong><br>Inactive Users</td>
+                        <td>1 email (bilingual)</td>
+                        <td>65K inactive users</td>
+                        <td>
+                            <div class="example-box">
+                                "Your account is waiting"<br>
+                                <small>Reactivation email with feature highlights</small>
+                            </div>
+                        </td>
+                        <td><span class="objective">10% activation (9,750 users)</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Campaign E</strong><br>Cluster Growth</td>
+                        <td>1 email (bilingual)</td>
+                        <td>Shappire/Ruby users</td>
+                        <td>
+                            <div class="example-box">
+                                "Just 2 more transactions = unlock better rewards"<br>
+                                <small>Tier upgrade motivation email</small>
+                            </div>
+                        </td>
+                        <td><span class="objective">20% tier increase</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Campaign F</strong><br>IMT Holiday</td>
+                        <td>8 emails (bilingual)<br><small style="color: var(--bamboo-dark-green); font-weight: 600;">+ 10 country-specific variations</small></td>
+                        <td>All active users, segmented by destination country</td>
+                        <td>
+                            <div class="example-box">
+                                "Send money to Mexico for the holidays - $0.85"<br>
+                                <small>Personalized with country name + trusted local payers (Elektra Mexico, Bancoppel)</small>
+                            </div>
+                        </td>
+                        <td><span class="objective">20% increase in IMT</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Campaign G</strong><br>Price Comparison</td>
+                        <td>4 emails (bilingual)</td>
+                        <td>All users</td>
+                        <td>
+                            <div class="example-box">
+                                "Remitly: $1.99 vs MyBambu: $0.85 - Save $59/year"<br>
+                                <small>Competitive pricing email</small>
+                            </div>
+                        </td>
+                        <td><span class="objective">5% new IMT users</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>Total Email Assets:</strong> 7 campaigns = 20 email templates (10 English + 10 Spanish)</p>
+            <p><strong>Note:</strong> Campaign F includes 10 country-specific variations for Top 10 IMT countries (Mexico, Honduras, Nicaragua, Colombia, Guatemala, Ecuador, El Salvador, Dominican Republic, Venezuela, Costa Rica). Each variation personalizes messaging with country name and trusted local payers. Total production: 100 email templates for Campaign F alone (5 emails × 10 countries × 2 languages).</p>
+        </div>
+
+        <!-- In-App Messages -->
+        <div id="in-app" class="card">
+            <h2>📱 In-App Messages</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Message Type</th>
+                        <th>Count</th>
+                        <th>Trigger</th>
+                        <th>Example</th>
+                        <th>Objective</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Direct Deposit Setup</td>
+                        <td>1 (bilingual)</td>
+                        <td>User opens app, no DD</td>
+                        <td>
+                            <div class="example-box">
+                                "💰 Get paid automatically - Set up direct deposit in 3 minutes"
+                            </div>
+                        </td>
+                        <td><span class="objective">Drive DD adoption</span></td>
+                    </tr>
+                    <tr>
+                        <td>DD Reactivation</td>
+                        <td>1 (bilingual)</td>
+                        <td>Had DD, none in 30 days</td>
+                        <td>
+                            <div class="example-box">
+                                "Haven't gotten your paycheck here lately - Need help?"
+                            </div>
+                        </td>
+                        <td><span class="objective">Recover lapsed DD</span></td>
+                    </tr>
+                    <tr>
+                        <td>Cluster Growth</td>
+                        <td>1 (bilingual)</td>
+                        <td>Near tier threshold</td>
+                        <td>
+                            <div class="example-box">
+                                "🎯 So close! Just 2 more transactions = unlock better rewards"
+                            </div>
+                        </td>
+                        <td><span class="objective">Tier upgrades</span></td>
+                    </tr>
+                    <tr>
+                        <td>IMT Holiday</td>
+                        <td>1 (bilingual)</td>
+                        <td>User views IMT screen</td>
+                        <td>
+                            <div class="example-box">
+                                "🎄 Send money home for the holidays. $0.85 flat fee"
+                            </div>
+                        </td>
+                        <td><span class="objective">Increase IMT volume</span></td>
+                    </tr>
+                    <tr>
+                        <td>Price Comparison</td>
+                        <td>1 (bilingual)</td>
+                        <td>User views IMT screen</td>
+                        <td>
+                            <div class="example-box">
+                                "💡 Why pay $1.99? Send money for $0.85 with MyBambu"
+                            </div>
+                        </td>
+                        <td><span class="objective">Competitive positioning</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>Total In-App Assets:</strong> 5 message types = 10 variations (5 English + 5 Spanish)</p>
+            <p><strong>Frequency:</strong> Once per week maximum to avoid notification fatigue</p>
+        </div>
+
+        <!-- Push Notifications -->
+        <div id="push" class="card">
+            <h2>🔔 Push Notifications</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Campaign</th>
+                        <th>Count</th>
+                        <th>Schedule</th>
+                        <th>Example</th>
+                        <th>Objective</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Direct Deposit</td>
+                        <td>2 (bilingual)</td>
+                        <td>Day 1 & Day 7</td>
+                        <td>
+                            <div class="example-box">
+                                "💰 Payday! Get paid automatically with direct deposit. 100% free"
+                            </div>
+                        </td>
+                        <td><span class="objective">DD setup reminders</span></td>
+                    </tr>
+                    <tr>
+                        <td>DD Reactivation</td>
+                        <td>1 (bilingual)</td>
+                        <td>Friday 9 AM</td>
+                        <td>
+                            <div class="example-box">
+                                "Miss automatic paychecks? Reactivate direct deposit. 100% free 💰"
+                            </div>
+                        </td>
+                        <td><span class="objective">Win back DD users</span></td>
+                    </tr>
+                    <tr>
+                        <td>Lost Customers</td>
+                        <td>3 (bilingual)</td>
+                        <td>Day 1, 7, 14</td>
+                        <td>
+                            <div class="example-box">
+                                "🎁 Come back this week = First 4 transfers FREE"
+                            </div>
+                        </td>
+                        <td><span class="objective">Reactivate churned</span></td>
+                    </tr>
+                    <tr>
+                        <td>Inactive Users</td>
+                        <td>1 (bilingual)</td>
+                        <td>Tuesday 10 AM</td>
+                        <td>
+                            <div class="example-box">
+                                "Your MyBambu account misses you. Send money for $0.85 today"
+                            </div>
+                        </td>
+                        <td><span class="objective">Drive activity</span></td>
+                    </tr>
+                    <tr>
+                        <td>Cluster Growth</td>
+                        <td>1 (bilingual)</td>
+                        <td>Mid-month</td>
+                        <td>
+                            <div class="example-box">
+                                "🎯 Almost there! Just 2 more transactions = better rewards"
+                            </div>
+                        </td>
+                        <td><span class="objective">Tier progression</span></td>
+                    </tr>
+                    <tr>
+                        <td>IMT Holiday</td>
+                        <td>6 (bilingual)</td>
+                        <td>Weekly Nov-Dec</td>
+                        <td>
+                            <div class="example-box">
+                                "🎄 3 weeks until Christmas. Send money home today - $0.85"
+                            </div>
+                        </td>
+                        <td><span class="objective">Holiday IMT push</span></td>
+                    </tr>
+                    <tr>
+                        <td>Price Comparison</td>
+                        <td>2 (bilingual)</td>
+                        <td>Bi-weekly</td>
+                        <td>
+                            <div class="example-box">
+                                "💡 Save $59/year - MyBambu: $0.85 vs Remitly: $1.99"
+                            </div>
+                        </td>
+                        <td><span class="objective">Competitive edge</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>Total Push Assets:</strong> 16 notification templates (8 English + 8 Spanish)</p>
+            <p><strong>Timing:</strong> Optimized by day/time based on campaign (Fridays for paycheck, Tuesdays for activity)</p>
+        </div>
+
+        <!-- Social Media -->
+        <div id="social" class="card">
+            <h2>📱 Social Media Strategy</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Content Pillar</th>
+                        <th>Posts/Month</th>
+                        <th>Platform</th>
+                        <th>Example</th>
+                        <th>Objective</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Pillar 1</strong><br>Price Comparison</td>
+                        <td>4 posts</td>
+                        <td>FB & IG (Spanish)</td>
+                        <td>
+                            <div class="example-box">
+                                "Remitly: $1.99 | MyBambu: $0.85<br>
+                                Enviar 1x por semana durante un año:<br>
+                                Remitly: $103.48 | MyBambu: $44.20<br>
+                                Ahorras: $59.28 al año"
+                            </div>
+                        </td>
+                        <td><span class="objective">Highlight pricing advantage</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pillar 2</strong><br>Holiday IMT Push</td>
+                        <td>8 posts (Nov-Dec only)</td>
+                        <td>FB & IG (Spanish)</td>
+                        <td>
+                            <div class="example-box">
+                                "Faltan 3 semanas para Navidad. Tu familia necesita ayuda con regalos, comida, cuentas. Envía dinero a casa por solo $0.85"
+                            </div>
+                        </td>
+                        <td><span class="objective">Seasonal IMT volume</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pillar 3</strong><br>Educational (DD)</td>
+                        <td>4 posts</td>
+                        <td>FB & IG (Spanish)</td>
+                        <td>
+                            <div class="example-box">
+                                "No te preocupes más por meter plata a tu cuenta 💰<br>
+                                Configura el depósito directo con MyBambu en 4 pasos..."
+                            </div>
+                        </td>
+                        <td><span class="objective">DD education & adoption</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pillar 4</strong><br>Customer Stories</td>
+                        <td>4 posts</td>
+                        <td>FB & IG (Spanish)</td>
+                        <td>
+                            <div class="example-box">
+                                "María envía $200 a casa cada mes. Con MyBambu ahorra $13.68 al año vs. otras apps. Esa plata va directo a su familia"
+                            </div>
+                        </td>
+                        <td><span class="objective">Social proof & trust</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Stories</strong></td>
+                        <td>12-20 stories/month</td>
+                        <td>FB & IG (Spanish)</td>
+                        <td>
+                            <div class="example-box">
+                                "⏰ ÚLTIMA OPORTUNIDAD<br>
+                                Primeras 4 transferencias GRATIS hoy<br>
+                                [Swipe up to download]"
+                            </div>
+                        </td>
+                        <td><span class="objective">Quick engagement & offers</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>Total Social Media Assets:</strong> 20-24 posts per month + 12-20 stories</p>
+            <p><strong>Platforms:</strong> Facebook & Instagram (Spanish-only, Latin American audience)</p>
+            <p><strong>Frequency:</strong> 2-3 posts/week + 3-5 stories/week</p>
+            <p><strong>Time Commitment:</strong> 2.5 hours/week total</p>
+        </div>
+
+        <!-- Key Objectives -->
+        <div id="objectives" class="card">
+            <h2>🎯 What We're Trying to Achieve</h2>
+
+            <h3>Primary Goal</h3>
+            <p><strong>Increase revenue per customer from $8-12 baseline to $10-14 by Q1 2026</strong></p>
+
+            <h3>Supporting Objectives</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Problem</th>
+                        <th>Campaign Target</th>
+                        <th>Success Metric</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Problem 1: Activity</strong><br><small>(HIGHEST - 99K users)</small></td>
+                        <td>Campaign C: Lost Customers (34K)<br>Campaign D: Inactive Users (65K)<br>Campaign E: Cluster Growth</td>
+                        <td>15% reactivation (6,800 users)<br>10% activation (9,750 users)<br>20% tier increase</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Problem 2: Revenue</strong><br><small>(HIGH - Holiday timing)</small></td>
+                        <td>Campaign F: IMT Holiday<br>Campaign G: Price Comparison</td>
+                        <td>20% increase in IMT transactions<br>5% new IMT users</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Problem 3: Funding</strong><br><small>(MEDIUM - 2-3K DD users)</small></td>
+                        <td>Campaign A: Direct Deposit<br>Campaign B: DD Reactivation</td>
+                        <td>5% new DD adoption<br>10% DD reactivation</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Expected Impact</h3>
+            <ul style="margin-left: 20px; margin-top: 15px;">
+                <li><strong>Funding:</strong> Recover stagnant direct deposit users and increase account funding methods</li>
+                <li><strong>Activity:</strong> Reactivate 16,550+ users and reduce transaction frequency gap from 21 to 14-18 days</li>
+                <li><strong>Revenue:</strong> Capture holiday IMT opportunity (card revenue grows naturally, IMT needs push)</li>
+                <li><strong>Competitive Position:</strong> Leverage $0.85 pricing advantage vs. competitors ($1.99-$5.00)</li>
+                <li><strong>Personalization:</strong> Country-specific IMT messaging with trusted local payers expected to increase open rates 15-25% and conversion rates 20-30% vs generic messaging</li>
+            </ul>
+
+            <div class="alert" style="margin-top: 30px;">
+                <strong>Next Steps:</strong> Upon approval, request 12 BI audience segments from data team (2 general + 10 country-specific IMT segments, 3-day turnaround) and begin campaign deployment Week 1 (Nov 8-14).
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('.sidenav a:not(.back-to-hub)').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                    // Update active state
+                    document.querySelectorAll('.sidenav a').forEach(a => a.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Update active nav on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('[id]');
+            const navLinks = document.querySelectorAll('.sidenav a');
+
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

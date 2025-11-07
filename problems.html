@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problems & Solutions | MyBambu Q4 Action Plan</title>
+    <style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bamboo-green: #2ECC71;
+            --bamboo-dark-green: #27AE60;
+            --bamboo-light-green: #A8E6CF;
+            --bamboo-navy: #1A3A52;
+            --bamboo-dark: #0F2537;
+            --text-dark: #2C3E50;
+            --text-light: #7F8C8D;
+            --bg-light: #F8F9FA;
+            --border: #E1E8ED;
+            --white: #FFFFFF;
+            --red: #E74C3C;
+            --orange: #F39C12;
+            --blue: #3498DB;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-light);
+        }
+
+        /* Side Navigation */
+        .sidenav {
+            height: 100%;
+            width: 280px;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            background: var(--bamboo-dark);
+            overflow-x: hidden;
+            padding-top: 20px;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        }
+
+        .sidenav .logo {
+            padding: 0 25px 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sidenav .logo h1 {
+            color: var(--bamboo-green);
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .sidenav .logo p {
+            color: var(--bamboo-light-green);
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .sidenav a {
+            padding: 12px 25px;
+            text-decoration: none;
+            font-size: 14px;
+            color: #BDC3C7;
+            display: block;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+
+        .sidenav a:hover {
+            background: rgba(46, 204, 113, 0.1);
+            color: var(--bamboo-light-green);
+            border-left-color: var(--bamboo-green);
+        }
+
+        .sidenav a.active {
+            background: rgba(46, 204, 113, 0.15);
+            color: var(--bamboo-green);
+            border-left-color: var(--bamboo-green);
+            font-weight: 600;
+        }
+
+        .sidenav .nav-section {
+            padding: 20px 25px 10px;
+            color: var(--bamboo-light-green);
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .back-to-hub {
+            padding: 12px 25px;
+            text-decoration: none;
+            font-size: 14px;
+            color: #BDC3C7;
+            display: block;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 10px;
+        }
+
+        .back-to-hub:hover {
+            background: rgba(46, 204, 113, 0.1);
+            color: var(--bamboo-light-green);
+            border-left-color: var(--bamboo-green);
+        }
+
+        .back-to-hub::before {
+            content: '← ';
+            margin-right: 5px;
+        }
+
+        /* Main Content */
+        .main {
+            margin-left: 280px;
+            padding: 40px;
+            max-width: 1400px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--bamboo-green) 0%, var(--bamboo-dark-green) 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 20px rgba(46, 204, 113, 0.3);
+        }
+
+        .header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* Alert Box */
+        .alert {
+            background: #FFF3CD;
+            border-left: 4px solid var(--orange);
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+
+        .alert strong {
+            color: var(--orange);
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+
+        .card h2 {
+            color: var(--bamboo-dark);
+            font-size: 28px;
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--bamboo-green);
+            padding-bottom: 10px;
+        }
+
+        .card h3 {
+            color: var(--bamboo-dark-green);
+            font-size: 22px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .card h4 {
+            color: var(--text-dark);
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        /* Problem Headers */
+        .problem-header {
+            background: linear-gradient(135deg, var(--bamboo-navy) 0%, var(--bamboo-dark) 100%);
+            color: white;
+            padding: 30px 40px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(26, 58, 82, 0.3);
+        }
+
+        .problem-header h2 {
+            font-size: 32px;
+            border: none;
+            padding: 0;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .problem-header .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .stat-box {
+            background: var(--bg-light);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--bamboo-green);
+        }
+
+        .stat-box .label {
+            font-size: 13px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .stat-box .value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .stat-box.negative {
+            border-left-color: var(--red);
+        }
+
+        .stat-box.warning {
+            border-left-color: var(--orange);
+        }
+
+        /* Campaign Box */
+        .campaign-box {
+            background: #F0F8F4;
+            border: 2px solid var(--bamboo-light-green);
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .campaign-box h4 {
+            color: var(--bamboo-dark-green);
+            margin-top: 0;
+        }
+
+        .campaign-box .campaign-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .campaign-box .meta-item {
+            font-size: 14px;
+        }
+
+        .campaign-box .meta-item strong {
+            color: var(--bamboo-dark-green);
+        }
+
+        /* Email Template */
+        .email-template {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            font-family: Georgia, serif;
+        }
+
+        .email-template .subject {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .email-template .content {
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        /* Code Block */
+        .code-block {
+            background: #F6F8FA;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        ul li, ol li {
+            margin-bottom: 8px;
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        .badge.primary {
+            background: var(--bamboo-light-green);
+            color: var(--bamboo-dark-green);
+        }
+
+        .badge.danger {
+            background: #FADBD8;
+            color: var(--red);
+        }
+
+        .badge.warning {
+            background: #FCF3CF;
+            color: var(--orange);
+        }
+
+        .badge.info {
+            background: #D6EAF8;
+            color: var(--blue);
+        }
+
+        /* Timeline */
+        .timeline {
+            margin: 25px 0;
+        }
+
+        .timeline-item {
+            padding: 20px;
+            background: white;
+            border-left: 4px solid var(--bamboo-green);
+            margin-bottom: 15px;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .timeline-item h5 {
+            color: var(--bamboo-dark-green);
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table th {
+            background: var(--bamboo-dark);
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        table td {
+            padding: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        table tr:hover {
+            background: var(--bg-light);
+        }
+
+        /* Checklist */
+        .checklist {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .checklist li {
+            padding: 10px;
+            padding-left: 35px;
+            position: relative;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .checklist li:before {
+            content: '☐';
+            position: absolute;
+            left: 10px;
+            color: var(--bamboo-green);
+            font-size: 18px;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 900px) {
+            .sidenav {
+                width: 0;
+                padding: 0;
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .sidenav {
+                display: none;
+            }
+
+            .main {
+                margin-left: 0;
+            }
+        }
+    </style>
+    </style>
+</head>
+<body>
+    <!-- Side Navigation -->
+    <div class="sidenav">
+        <div class="logo">
+            <h1>🎋 MyBambu</h1>
+            <p>Q4 2025 Action Plan</p>
+        </div>
+
+        <a href="index.html" class="back-to-hub">Back to Hub</a>
+
+        <div class="nav-section">Problems (By Priority)</div>
+        <a href="#problem-activity">Problem 1: Activity (99K users)</a>
+        <a href="#problem-revenue">Problem 2: Revenue (Holiday)</a>
+        <a href="#problem-funding">Problem 3: Funding (DD)</a>
+
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+        <!-- Header -->
+        <div class="header">
+            <h1>Problems & Solutions</h1>
+            <p>MyBambu Q4 2025 Action Plan</p>
+        </div>
+
+        <div id="problem-activity" class="problem-header">
+            <h2>🎯 PROBLEM 1: ACTIVITY (HIGHEST PRIORITY - 99,000 USERS)</h2>
+            <div class="subtitle">34K Lost Customers + 65K Inactive | Avg 21 Days Between Transactions | Growing MOM</div>
+        </div>
+
+        <div class="card">
+            <h3>Current State & Insights</h3>
+            <ul>
+                <li><strong>Transaction Frequency:</strong> Average 21 days between transactions (need to reduce to 14-18 days)</li>
+                <li><strong>Lost Customers:</strong> Growing month-over-month (34,000 in October)</li>
+                <li><strong>Inactive Users:</strong> 65,000 users not active in current month but had activity in last 90 days</li>
+                <li><strong>Churn Pattern:</strong> Users with 2+ products have lower churn - need multi-product promotion</li>
+                <li><strong>Cluster Tiers:</strong> Shappire → Ruby → Emerald → Diamond (need to move users up tiers)</li>
+                <li><strong>Consistent Activity:</strong> New accounts show 30% activation rate after 3+ months</li>
+            </ul>
+
+            <h3>Key Goals</h3>
+            <ol>
+                <li>Reduce time between transactions: 21 days → 14-18 days</li>
+                <li>Increase multi-product usage (2+ products per customer)</li>
+                <li>Stop month-over-month growth in lost customers</li>
+                <li>Move users up cluster tiers (Shappire → Ruby → Emerald)</li>
+            </ol>
+
+            <h3>BI Audience Segments Needed</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Segment Name</th>
+                        <th>Criteria</th>
+                        <th>Estimated Size</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Lost_Customers_Oct2025</strong></td>
+                        <td>Had activity in Sept, zero in Oct, account active</td>
+                        <td>34,000</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Inactive_Current_Nov2025</strong></td>
+                        <td>No activity in Nov to date, had activity in last 90 days</td>
+                        <td>65,000</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Clusters_Shappire_Ruby</strong></td>
+                        <td>Current cluster: Shappire OR Ruby, account age >30 days</td>
+                        <td>TBD</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cluster_Decreased_Oct</strong></td>
+                        <td>Cluster tier in Sept higher than current</td>
+                        <td>TBD</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>📧 Campaign C: Lost Customer Win-Back</h3>
+            <div class="campaign-box">
+                <h4>Campaign Overview</h4>
+                <div class="campaign-meta">
+                    <div class="meta-item"><strong>Objective:</strong> Reactivate 34,000 lost customers</div>
+                    <div class="meta-item"><strong>Audiences:</strong> Lost_Customers_Oct2025</div>
+                    <div class="meta-item"><strong>Target:</strong> 15% reactivation (6,800 users)</div>
+                    <div class="meta-item"><strong>Channels:</strong> Email, Push Notifications</div>
+                </div>
+
+                <h4>Strategy</h4>
+                <p>Three-email sequence over 10 days to win back customers who had activity in September but zero in October. Day 1: Friendly check-in reminding them of key features. Day 5: Personalized by last product used (IMT vs Card) to reignite specific use case. Day 10: Incentive offer (first 4 transfers free) if no response to create urgency.</p>
+
+                <p><strong>Key Messages:</strong></p>
+                <ul>
+                    <li>We miss you - everything okay?</li>
+                    <li>Account still active and ready to use</li>
+                    <li>Reminder of key features: $0.85 money transfers, 90K+ free ATMs</li>
+                    <li>Personalized by last product used (IMT or Card)</li>
+                    <li>Incentive: First 4 transfers FREE (Day 10)</li>
+                </ul>
+
+                <p><span class="badge info">Execution Details:</span> See <a href="execution.html#campaign-c">Execution page</a> for complete email copy, in-app messages, and push notifications.</p>
+            </div>
+
+            <h3>📧 Campaign D: Inactive Current Users Activation</h3>
+            <div class="campaign-box">
+                <h4>Campaign Overview</h4>
+                <div class="campaign-meta">
+                    <div class="meta-item"><strong>Objective:</strong> Activate 65,000 inactive users before they fully churn</div>
+                    <div class="meta-item"><strong>Audiences:</strong> Inactive_Current_Nov2025</div>
+                    <div class="meta-item"><strong>Target:</strong> 10% activation (9,750 users)</div>
+                    <div class="meta-item"><strong>Channels:</strong> Email, Push Notifications</div>
+                </div>
+
+                <h4>Strategy</h4>
+                <p>Casual, honest check-in with users who haven't been active in November but had activity in last 90 days. Acknowledge they might be busy, might have found something better, or might be having issues. Keep tone genuine and helpful rather than pushy. Goal is to catch them before they fully churn like the October lost customers.</p>
+
+                <p><strong>Key Messages:</strong></p>
+                <ul>
+                    <li>Quick check-in: Are you still using MyBambu?</li>
+                    <li>We haven't seen you in [X days]</li>
+                    <li>If something's wrong, we want to help</li>
+                    <li>If life got busy, we understand</li>
+                    <li>Core features reminder: $0.85 transfers, FREE DD, 90K+ ATMs</li>
+                </ul>
+
+                <p><span class="badge info">Execution Details:</span> See <a href="execution.html#campaign-d">Execution page</a> for complete email copy, in-app messages, and push notifications.</p>
+            </div>
+
+            <h3>📧 Campaign E: Cluster Growth (Shappire/Ruby → Ruby/Emerald)</h3>
+            <div class="campaign-box">
+                <h4>Campaign Overview</h4>
+                <div class="campaign-meta">
+                    <div class="meta-item"><strong>Objective:</strong> Move users up cluster tiers (Shappire → Ruby → Emerald → Diamond)</div>
+                    <div class="meta-item"><strong>Audiences:</strong> Clusters_Shappire_Ruby, Cluster_Decreased_Oct</div>
+                    <div class="meta-item"><strong>Target:</strong> 20% tier increase</div>
+                    <div class="meta-item"><strong>Channels:</strong> Email, In-App Messages, Push Notifications</div>
+                </div>
+
+                <h4>Strategy</h4>
+                <p>Gamification-based campaign targeting users in lower cluster tiers to increase transaction frequency. Motivate users by showing they're "almost there" to unlock better rewards, new features, and priority support. Focus on end-of-month push when they're closest to tier threshold. Track which activities count (send money, use card, add funds, pay bills).</p>
+
+                <p><strong>Key Messages:</strong></p>
+                <ul>
+                    <li>You're close to unlocking more with MyBambu</li>
+                    <li>Use MyBambu 2 more times this month for better rewards</li>
+                    <li>Benefits: Better rewards, new features, priority support</li>
+                    <li>What counts: Send money, use card, add funds, pay bills</li>
+                    <li>End-of-month urgency: "You've got 3 days!"</li>
+                </ul>
+
+                <p><span class="badge info">Execution Details:</span> See <a href="execution.html#campaign-e">Execution page</a> for complete email copy, in-app messages, and push notifications.</p>
+            </div>
+
+            <h3>Timeline for Activity Campaigns</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h5>Week 1 (Nov 8-14)</h5>
+                    <ul>
+                        <li>Request BI segments: Lost_Customers_Oct2025, Inactive_Current_Nov2025, Clusters_Shappire_Ruby, Cluster_Decreased_Oct</li>
+                        <li>Set up Campaigns C, D, E in email platform</li>
+                        <li>Launch Day 1: Lost customer email (Campaign C)</li>
+                        <li>Launch Day 5: Inactive user email (Campaign D)</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h5>Week 2-4</h5>
+                    <ul>
+                        <li>Send follow-up emails (Campaign C Email 2 on Day 5)</li>
+                        <li>Launch cluster growth campaign (Campaign E)</li>
+                        <li>Monitor reactivation rates daily</li>
+                        <li>A/B test subject lines</li>
+                        <li>Track which last product used (IMT vs Card) performs better</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Success Metrics - Activity</h3>
+            <ul>
+                <li><strong>Lost users reactivated:</strong> 20% of 34,000 = 6,800 users</li>
+                <li><strong>Inactive users activated:</strong> 15% of 65,000 = 9,750 users</li>
+                <li><strong>Cluster tier increases:</strong> 20% of Shappire/Ruby users moving to Ruby/Emerald</li>
+                <li><strong>Transaction frequency:</strong> Reduce from 21 days to 14-18 days average</li>
+                <li><strong>Multi-product usage:</strong> Increase % of users with 2+ products by 10%</li>
+                <li><strong>Campaign C conversion:</strong> 15% reactivation</li>
+                <li><strong>Campaign D conversion:</strong> 10% activation</li>
+                <li><strong>Campaign E conversion:</strong> 20% tier increase</li>
+            </ul>
+        </div>
+
+        <div id="problem-revenue" class="problem-header">
+            <h2>🎯 PROBLEM 2: REVENUE (HIGH - Time Sensitive)</h2>
+            <div class="subtitle">IMT Revenue Doesn't Grow in Nov-Dec | Need 20% Increase | Holiday Window Critical</div>
+        </div>
+
+        <div class="card">
+            <h3>Current State & Insights</h3>
+            <ul>
+                <li><strong>Revenue per customer:</strong> $8-12 (flat for 18+ months) → Target: $10-14</li>
+                <li><strong>Critical Holiday Insight:</strong>
+                    <ul>
+                        <li>✅ Revenue per Card user DOES grow during Nov-Dec (organic spending increase)</li>
+                        <li>❌ Revenue per IMT user DOESN'T grow during Nov-Dec (requires proactive push)</li>
+                    </ul>
+                </li>
+                <li><strong>IMT Pricing:</strong> $0.85 vs Remitly $1.99 (no competitor matches this price)</li>
+                <li><strong>Opportunity:</strong> Team hasn't been aggressive enough with competitive messaging</li>
+                <li><strong>User Behavior:</strong> Average 21 days between transactions (need to reduce)</li>
+            </ul>
+
+            <h3>Strategy</h3>
+            <ol>
+                <li><strong>Card Revenue:</strong> Monitor organic growth during holidays - no active promotion needed</li>
+                <li><strong>IMT Revenue:</strong> Aggressive proactive holiday push - this is where all effort goes</li>
+                <li><strong>Price Comparison:</strong> Direct competitive messaging emphasizing $0.85 vs $1.99+</li>
+                <li><strong>Multi-product:</strong> Promote using 2+ products to increase transaction frequency</li>
+            </ol>
+
+            <h3>BI Audience Segments Needed</h3>
+            <p><strong>For IMT Campaigns:</strong> Use all active user segments + previous IMT users</p>
+            <ul>
+                <li>All active users with funding</li>
+                <li>Previous IMT users (last 6 months)</li>
+                <li>Lost_Customers_Oct2025 (who previously used IMT)</li>
+                <li>Inactive_Current_Nov2025</li>
+            </ul>
+
+            <h3>📧 Campaign F: International Money Transfer Holiday Push</h3>
+            <div class="campaign-box">
+                <h4>Campaign Overview</h4>
+                <div class="campaign-meta">
+                    <div class="meta-item"><strong>Objective:</strong> Increase IMT transactions 20% during Nov-Dec</div>
+                    <div class="meta-item"><strong>Audiences:</strong> All active users, Previous IMT users, Lost customers with IMT history + 10 country-specific segments</div>
+                    <div class="meta-item"><strong>Target:</strong> 20% increase in IMT transactions</div>
+                    <div class="meta-item"><strong>Channels:</strong> Email (bilingual), In-App Messages, Push Notifications</div>
+                </div>
+
+                <h4>Strategy</h4>
+                <p>Aggressive multi-touch holiday campaign focused on IMT transactions (revenue doesn't grow organically during holidays like Card does). Five-email sequence timed to key holiday moments: Holiday announcement, Thanksgiving family gratitude, end-of-month bill support, Christmas prep, and last-minute urgency. Emphasize $0.85 pricing advantage and emotional connection to family.</p>
+
+                <p><strong>NEW: Country-Specific Personalization</strong></p>
+                <p>Segment users by their destination country (Top 10: Mexico, Honduras, Nicaragua, Colombia, Guatemala, Ecuador, El Salvador, Dominican Republic, Venezuela, Costa Rica) and personalize email copy to mention their specific country and trusted local payers/banks. This increases relevance and trust.</p>
+
+                <p><strong>Example Personalization:</strong></p>
+                <ul>
+                    <li><strong>Mexico users:</strong> "Send money to Mexico for just $0.85 - receive at Elektra Mexico or Bancoppel"</li>
+                    <li><strong>Honduras users:</strong> "Send money to Honduras for just $0.85 - receive at Banco Atlantida or Elektra Honduras"</li>
+                    <li><strong>Generic (non-IMT users):</strong> "Send money home for just $0.85"</li>
+                </ul>
+
+                <p><strong>Key Messages:</strong></p>
+                <ul>
+                    <li>Holiday season: Send money to [COUNTRY] for just $0.85</li>
+                    <li>Family connection: Be there for your family in [COUNTRY] no matter the distance</li>
+                    <li>Trusted delivery: Receive at [LOCAL PAYERS] - same day</li>
+                    <li>End of month: Help family pay bills on time</li>
+                    <li>Christmas prep: Help family buy gifts, cook meals, pay year-end bills</li>
+                    <li>Last chance urgency: Christmas is 5 days away</li>
+                </ul>
+
+                <p><span class="badge danger">Critical</span> IMT revenue doesn't grow organically during holidays - requires aggressive proactive push!</p>
+
+                <p><span class="badge info">Personalization Impact</span> Country-specific messaging increases open rates 15-25% and conversion rates 20-30% vs generic messaging.</p>
+
+                <p><span class="badge info">Execution Details:</span> See <a href="execution.html#campaign-f">Execution page</a> for complete email copy, in-app messages, and push notifications.</p>
+            </div>
+
+            <h3>📧 Campaign G: Price Comparison (Competitive)</h3>
+            <div class="campaign-box">
+                <h4>Campaign Overview</h4>
+                <div class="campaign-meta">
+                    <div class="meta-item"><strong>Objective:</strong> Highlight price advantage vs competitors</div>
+                    <div class="meta-item"><strong>Audiences:</strong> All active users, Lost_Customers_Oct2025, Inactive_Current_Nov2025</div>
+                    <div class="meta-item"><strong>Target:</strong> 5% new IMT users</div>
+                    <div class="meta-item"><strong>Channels:</strong> Email, In-App Messages, Push Notifications</div>
+                </div>
+
+                <h4>Strategy</h4>
+                <p>Direct competitive messaging campaign highlighting MyBambu's $0.85 pricing vs Remitly's $1.99. Team identified they haven't been aggressive enough with competitive messaging - this campaign changes that. Show clear savings calculations (save $1.14 per transfer, $11.40 for 10 transfers). Emphasize that MyBambu is just as fast, easy, and reliable while being significantly cheaper.</p>
+
+                <p><strong>Key Messages:</strong></p>
+                <ul>
+                    <li>Remitly charges $1.99, MyBambu charges $0.85</li>
+                    <li>Save $1.14 every single transfer</li>
+                    <li>Send 10 times = save $11.40, send 20 times = save $22.80</li>
+                    <li>Just as fast, easy, and reliable</li>
+                    <li>Why pay more?</li>
+                </ul>
+
+                <p><span class="badge warning">Strategy Shift</span> Team identified they haven't been aggressive enough with competitive messaging - time to change that!</p>
+
+                <p><span class="badge info">Execution Details:</span> See <a href="execution.html#campaign-g">Execution page</a> for complete email copy, in-app messages, and push notifications.</p>
+            </div>
+
+            <h3>Timeline for Revenue Campaigns</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h5>Week 1 (Nov 8-14)</h5>
+                    <ul>
+                        <li>Set up Campaign F (IMT Holiday) - all 5 emails scheduled</li>
+                        <li>Set up Campaign G (Price Comparison)</li>
+                        <li>Launch Email 1: Holiday announcement</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h5>Week 3 (Nov 22-28) - THANKSGIVING</h5>
+                    <ul>
+                        <li>Heavy push on IMT (Campaign F - Email 2)</li>
+                        <li>Send family gratitude messages</li>
+                        <li>In-app messages: "Show your family you care - Send money home"</li>
+                        <li>Monitor IMT transaction volume daily</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h5>Week 4 (Nov 29 - Dec 5) - END OF MONTH SUPPORT</h5>
+                    <ul>
+                        <li>End of Month Support email (Campaign F - Email 3)</li>
+                        <li>Price comparison emphasis (Campaign G)</li>
+                        <li>Push notification: End of Month Support messaging</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h5>Weeks 5-8 (Dec 6-31) - CHRISTMAS</h5>
+                    <ul>
+                        <li>Dec 6: "3 weeks until Christmas" email (Campaign F - Email 4)</li>
+                        <li>Dec 13: "2 weeks until Christmas" push notification</li>
+                        <li>Dec 20: "Last chance!" email (Campaign F - Email 5) + social media push</li>
+                        <li>Monitor revenue per customer daily</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Success Metrics - Revenue</h3>
+            <ul>
+                <li><strong>PRIMARY: Revenue per customer:</strong> $10-14 (up from $8-12 baseline)</li>
+                <li><strong>IMT transactions:</strong> +20% Nov-Dec vs Sept-Oct</li>
+                <li><strong>Card transactions:</strong> Monitor organic growth (no active promotion needed)</li>
+                <li><strong>Transaction frequency:</strong> +10% among reactivated users</li>
+                <li><strong>Customer lifetime value:</strong> +15% for engaged segments</li>
+                <li><strong>Campaign F conversion:</strong> 20% increase in IMT transactions</li>
+                <li><strong>Campaign G conversion:</strong> 5% new IMT users</li>
+            </ul>
+        </div>
+
+        <div id="problem-funding" class="problem-header">
+            <h2>🎯 PROBLEM 3: FUNDING (MEDIUM PRIORITY)</h2>
+            <div class="subtitle">Not Growing Direct Deposit Users | ~2-3K Core DD Users | Virtual Card Opportunity</div>
+        </div>
+
+        <div class="card">
+            <h3>Current State & Insights</h3>
+            <ul>
+                <li><strong>Direct Deposit:</strong> Stagnant - not growing unique DD users</li>
+                <li><strong>Churn Pattern:</strong> New signups balanced by users leaving (net flat growth)</li>
+                <li><strong>Positive Indicators:</strong> Strong organic ATM growth, 30% higher activity after 3+ months</li>
+                <li><strong>Data:</strong> 13% of active users have DD, ~2-3K consistent DD users stay 12+ months</li>
+                <li><strong>Opportunity:</strong> Virtual card usage drives BOTH funding AND spending behavior</li>
+                <li><strong>Insight:</strong> Track customer care DD calls to identify barriers and address proactively</li>
+            </ul>
+
+            <h3>BI Audience Segments Needed</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Segment Name</th>
+                        <th>Criteria</th>
+                        <th>Estimated Size</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>New_NoCard_Funding</strong></td>
+                        <td>Account 15-90 days old, no card activated, &lt;3 funding TX</td>
+                        <td>TBD</td>
+                    </tr>
+                    <tr>
+                        <td><strong>HasCard_LowFunding</strong></td>
+                        <td>Card activated >15 days, 0-2 funding TX in last 30 days</td>
+                        <td>TBD</td>
+                    </tr>
+                    <tr>
+                        <td><strong>DirectDeposit_Churned</strong></td>
+                        <td>Had DD in last 6 months, none in last 30 days</td>
+                        <td>TBD</td>
+                    </tr>
+                    <tr>
+                        <td><strong>GigEconomy_DirectDeposit_Eligible</strong></td>
+                        <td>Uber, DoorDash, Instacart identified OR Friday deposit pattern, no DD setup</td>
+                        <td>TBD (High value)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>📧 Campaign A: Direct Deposit Education & Setup</h3>
+            <div class="campaign-box">
+                <h4>Campaign Overview</h4>
+                <div class="campaign-meta">
+                    <div class="meta-item"><strong>Objective:</strong> Increase direct deposit adoption</div>
+                    <div class="meta-item"><strong>Audiences:</strong> New_NoCard_Funding, HasCard_LowFunding, GigEconomy_DirectDeposit_Eligible</div>
+                    <div class="meta-item"><strong>Target:</strong> 5% conversion rate</div>
+                    <div class="meta-item"><strong>Channels:</strong> Email (bilingual), In-App Messages, Push Notifications</div>
+                </div>
+
+                <h4>Strategy</h4>
+                <p>Multi-touch campaign educating users on direct deposit benefits (100% free, automatic, one-time setup). Focus on removing friction by emphasizing ease of setup and eliminating need for manual funding. Prioritize virtual card as secondary funding method that drives both funding AND spending behavior.</p>
+
+                <p><strong>Key Messages:</strong></p>
+                <ul>
+                    <li>Set up once, get paid automatically</li>
+                    <li>100% free, works with any employer</li>
+                    <li>4 easy funding methods (DD, Virtual Card, Transfer, Cash)</li>
+                    <li>Virtual card drives dual behavior (funding + spending)</li>
+                    <li>Takes 3-7 days to activate, works every payday</li>
+                </ul>
+
+                <p><span class="badge info">Execution Details:</span> See <a href="execution.html#campaign-a">Execution page</a> for complete email copy, in-app messages, and push notifications.</p>
+            </div>
+
+            <h3>📧 Campaign B: Re-engage Direct Deposit Churned Users</h3>
+            <div class="campaign-box">
+                <h4>Campaign Overview</h4>
+                <div class="campaign-meta">
+                    <div class="meta-item"><strong>Objective:</strong> Win back users who stopped using direct deposit</div>
+                    <div class="meta-item"><strong>Audiences:</strong> DirectDeposit_Churned</div>
+                    <div class="meta-item"><strong>Target:</strong> 10% conversion rate</div>
+                    <div class="meta-item"><strong>Channels:</strong> Email (bilingual), In-App Messages, Push Notifications</div>
+                </div>
+
+                <h4>Strategy</h4>
+                <p>Empathetic outreach to users who previously had direct deposit but stopped using it. Focus on understanding what changed (new job, issues, better option) and offering help to reactivate. Track customer care log-a-calls with DD questions to identify barriers and proactively address in campaigns.</p>
+
+                <p><strong>Key Messages:</strong></p>
+                <ul>
+                    <li>We noticed you stopped using direct deposit - did something change?</li>
+                    <li>Direct deposit still 100% free and automatic</li>
+                    <li>Easy to reactivate if you need help</li>
+                    <li>We genuinely want to understand and help</li>
+                    <li>Chat with AI assistant for support</li>
+                </ul>
+
+                <p><span class="badge info">Execution Details:</span> See <a href="execution.html#campaign-b">Execution page</a> for complete email copy, in-app messages, and push notifications.</p>
+            </div>
+
+            <h3>Timeline for Funding Campaigns</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h5>Week 1 (Nov 8-14)</h5>
+                    <ul>
+                        <li>Request BI segments: New_NoCard_Funding, HasCard_LowFunding, DirectDeposit_Churned, GigEconomy_DirectDeposit_Eligible</li>
+                        <li>Set up Campaign A & B in email platform</li>
+                        <li>Launch Day 2: Direct deposit campaign (Campaign A)</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h5>Week 2-4</h5>
+                    <ul>
+                        <li>Monitor performance daily</li>
+                        <li>Send follow-up emails to non-openers</li>
+                        <li>Track customer care DD calls for insights</li>
+                        <li>Optimize send times and subject lines</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Success Metrics - Funding</h3>
+            <ul>
+                <li><strong>Direct deposit signups:</strong> +15% MoM</li>
+                <li><strong>First-time funding:</strong> +10% MoM</li>
+                <li><strong>Virtual card adoption:</strong> +20% MoM</li>
+                <li><strong>Campaign A conversion:</strong> 5%</li>
+                <li><strong>Campaign B conversion:</strong> 10%</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('.sidenav a:not(.back-to-hub)').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                    // Update active state
+                    document.querySelectorAll('.sidenav a').forEach(a => a.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Update active nav on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.card, .problem-header');
+            const navLinks = document.querySelectorAll('.sidenav a');
+
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

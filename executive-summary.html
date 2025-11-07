@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Executive Summary | MyBambu Q4 Action Plan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bamboo-green: #2ECC71;
+            --bamboo-dark-green: #27AE60;
+            --bamboo-light-green: #A8E6CF;
+            --bamboo-navy: #1A3A52;
+            --bamboo-dark: #0F2537;
+            --text-dark: #2C3E50;
+            --text-light: #7F8C8D;
+            --bg-light: #F8F9FA;
+            --border: #E1E8ED;
+            --white: #FFFFFF;
+            --red: #E74C3C;
+            --orange: #F39C12;
+            --blue: #3498DB;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-light);
+        }
+
+        /* Side Navigation */
+        .sidenav {
+            height: 100%;
+            width: 280px;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            background: var(--bamboo-dark);
+            overflow-x: hidden;
+            padding-top: 20px;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        }
+
+        .sidenav .logo {
+            padding: 0 25px 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sidenav .logo h1 {
+            color: var(--bamboo-green);
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .sidenav .logo p {
+            color: var(--bamboo-light-green);
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .sidenav a {
+            padding: 12px 25px;
+            text-decoration: none;
+            font-size: 14px;
+            color: #BDC3C7;
+            display: block;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+
+        .sidenav a:hover {
+            background: rgba(46, 204, 113, 0.1);
+            color: var(--bamboo-light-green);
+            border-left-color: var(--bamboo-green);
+        }
+
+        .sidenav a.active {
+            background: rgba(46, 204, 113, 0.15);
+            color: var(--bamboo-green);
+            border-left-color: var(--bamboo-green);
+            font-weight: 600;
+        }
+
+        .sidenav .nav-section {
+            padding: 20px 25px 10px;
+            color: var(--bamboo-light-green);
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .back-to-hub {
+            padding: 12px 25px;
+            text-decoration: none;
+            font-size: 14px;
+            color: #BDC3C7;
+            display: block;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 10px;
+        }
+
+        .back-to-hub:hover {
+            background: rgba(46, 204, 113, 0.1);
+            color: var(--bamboo-light-green);
+            border-left-color: var(--bamboo-green);
+        }
+
+        .back-to-hub::before {
+            content: '← ';
+            margin-right: 5px;
+        }
+
+        /* Main Content */
+        .main {
+            margin-left: 280px;
+            padding: 40px;
+            max-width: 1400px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--bamboo-green) 0%, var(--bamboo-dark-green) 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 20px rgba(46, 204, 113, 0.3);
+        }
+
+        .header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* Alert Box */
+        .alert {
+            background: #FFF3CD;
+            border-left: 4px solid var(--orange);
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+
+        .alert strong {
+            color: var(--orange);
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+
+        .card h2 {
+            color: var(--bamboo-dark);
+            font-size: 28px;
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--bamboo-green);
+            padding-bottom: 10px;
+        }
+
+        .card h3 {
+            color: var(--bamboo-dark-green);
+            font-size: 22px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .stat-box {
+            background: var(--bg-light);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--bamboo-green);
+        }
+
+        .stat-box .label {
+            font-size: 13px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .stat-box .value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .stat-box.negative {
+            border-left-color: var(--red);
+        }
+
+        .stat-box.warning {
+            border-left-color: var(--orange);
+        }
+
+        /* Lists */
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        ul li, ol li {
+            margin-bottom: 8px;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 900px) {
+            .sidenav {
+                width: 0;
+                padding: 0;
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .sidenav {
+                display: none;
+            }
+
+            .main {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Side Navigation -->
+    <div class="sidenav">
+        <div class="logo">
+            <h1>🎋 MyBambu</h1>
+            <p>Q4 2025 Action Plan</p>
+        </div>
+
+        <a href="index.html" class="back-to-hub">Back to Hub</a>
+
+        <div class="nav-section">Overview</div>
+        <a href="#executive-summary">Executive Summary</a>
+        <a href="#current-state">Current State</a>
+        <a href="#competitive-advantage">Competitive Advantage</a>
+        <a href="#critical-insight">Critical Holiday Insight</a>
+        <a href="#strategy">Strategy</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+        <!-- Header -->
+        <div class="header">
+            <h1>Executive Summary</h1>
+            <p>MyBambu Q4 2025 Action Plan | November-December 2025</p>
+        </div>
+
+        <!-- Executive Summary -->
+        <div id="executive-summary" class="card">
+            <h2>Executive Summary</h2>
+
+            <div class="alert">
+                <strong>Primary Goal:</strong> Improve revenue per customer from $8-12 baseline to $10-14 by Q1 2026
+            </div>
+
+            <h3 id="current-state">Current State (Jan '24 - Sep '25)</h3>
+            <div class="stats-grid">
+                <div class="stat-box warning">
+                    <div class="label">Revenue per Customer</div>
+                    <div class="value">$8-12</div>
+                    <small>Flat for 18+ months</small>
+                </div>
+                <div class="stat-box">
+                    <div class="label">Avg Time Between TX</div>
+                    <div class="value">21 days</div>
+                    <small>Target: 14-18 days</small>
+                </div>
+                <div class="stat-box negative">
+                    <div class="label">Lost Customers</div>
+                    <div class="value">Growing MOM</div>
+                    <small>34,000 in Oct</small>
+                </div>
+                <div class="stat-box negative">
+                    <div class="label">Direct Deposit Users</div>
+                    <div class="value">Stagnant</div>
+                    <small>Need recovery</small>
+                </div>
+            </div>
+
+            <h3 id="competitive-advantage">Competitive Advantage</h3>
+            <ul>
+                <li><strong>$0.85 IMT fee</strong> - No competitor matches this price (Remitly: $1.99, Others: $2-$5)</li>
+                <li>Significantly cheaper while maintaining same speed and reliability</li>
+            </ul>
+
+            <h3 id="critical-insight">Critical Holiday Insight</h3>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="label">Card Revenue</div>
+                    <div class="value">✅ Grows</div>
+                    <small>Organic during Nov-Dec</small>
+                </div>
+                <div class="stat-box warning">
+                    <div class="label">IMT Revenue</div>
+                    <div class="value">❌ Doesn't Grow</div>
+                    <small>Needs aggressive push</small>
+                </div>
+            </div>
+            <p><strong>Action:</strong> Card transactions will grow naturally during holidays. Focus all proactive efforts on IMT campaigns.</p>
+
+            <h3 id="strategy">Strategy</h3>
+            <p>Address three problems through targeted CRM campaigns + minimal social media support:</p>
+            <ol>
+                <li><strong>FUNDING:</strong> Recover lost DD users, increase virtual card adoption, drive alternative funding</li>
+                <li><strong>ACTIVITY:</strong> Reactivate 34K lost customers, activate 65K inactive users, reduce transaction frequency to 14-18 days</li>
+                <li><strong>REVENUE:</strong> 20% increase in IMT during Nov-Dec through aggressive holiday push + price comparison messaging</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('.sidenav a:not(.back-to-hub)').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                    // Update active state
+                    document.querySelectorAll('.sidenav a').forEach(a => a.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Update active nav on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('[id]');
+            const navLinks = document.querySelectorAll('.sidenav a');
+
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

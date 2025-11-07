@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyBambu Q4 Action Plan Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bamboo-green: #2ECC71;
+            --bamboo-dark-green: #27AE60;
+            --bamboo-light-green: #A8E6CF;
+            --bamboo-navy: #1A3A52;
+            --bamboo-dark: #0F2537;
+            --text-dark: #2C3E50;
+            --text-light: #7F8C8D;
+            --bg-light: #F8F9FA;
+            --border: #E1E8ED;
+            --white: #FFFFFF;
+            --red: #E74C3C;
+            --orange: #F39C12;
+            --blue: #3498DB;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, var(--bg-light) 0%, #E8F5E9 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        header h1 {
+            color: var(--bamboo-dark);
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            color: var(--bamboo-dark-green);
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        header p {
+            color: var(--text-light);
+            font-size: 16px;
+            margin-top: 15px;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--bamboo-green);
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(46, 204, 113, 0.3);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--bamboo-dark) 0%, var(--bamboo-navy) 100%);
+            padding: 30px;
+            color: var(--white);
+        }
+
+        .card-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--bamboo-light-green);
+        }
+
+        .card-subtitle {
+            font-size: 14px;
+            color: #BDC3C7;
+            font-weight: 500;
+        }
+
+        .card-body {
+            padding: 25px 30px;
+        }
+
+        .card-description {
+            color: var(--text-dark);
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .card-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            background: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        .badge.overview {
+            background: rgba(46, 204, 113, 0.15);
+            color: var(--bamboo-dark-green);
+        }
+
+        .badge.metrics {
+            background: rgba(52, 152, 219, 0.15);
+            color: var(--blue);
+        }
+
+        .badge.data {
+            background: rgba(155, 89, 182, 0.15);
+            color: #8E44AD;
+        }
+
+        .badge.problems {
+            background: rgba(231, 76, 60, 0.15);
+            color: var(--red);
+        }
+
+        .badge.execution {
+            background: rgba(243, 156, 18, 0.15);
+            color: var(--orange);
+        }
+
+        .badge.timeline {
+            background: rgba(52, 73, 94, 0.15);
+            color: #34495E;
+        }
+
+        .card-footer {
+            padding: 0 30px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 20px;
+            background: var(--bamboo-green);
+            color: var(--white);
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .card:hover .btn {
+            background: var(--bamboo-dark-green);
+        }
+
+        .btn::after {
+            content: '→';
+            margin-left: 8px;
+            font-size: 16px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 36px;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            body {
+                padding: 20px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎋 MyBambu Q4 Action Plan</h1>
+            <p class="subtitle">November - December 2025</p>
+            <p>Navigate through each section of the comprehensive marketing action plan</p>
+        </header>
+
+        <div class="cards-grid">
+            <!-- Card 0: Approval Summary (PRIORITY) -->
+            <a href="approval-summary.html" class="card" style="border-top: 4px solid var(--orange); grid-column: 1 / -1;">
+                <div class="card-header" style="background: linear-gradient(135deg, var(--orange) 0%, #E67E22 100%);">
+                    <div class="card-icon">✅</div>
+                    <h2 class="card-title">Executive Approval Summary</h2>
+                    <p class="card-subtitle">For President of Operations Review</p>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">
+                        <strong>PRIORITY REVIEW:</strong> Comprehensive overview of all marketing efforts, tactics, and assets.
+                        Includes total asset counts per channel, asset types, concrete examples, and measurable objectives for Q4 execution.
+                    </p>
+                    <div class="card-meta">
+                        <span class="badge" style="background: rgba(243, 156, 18, 0.15); color: var(--orange);">Approval Required</span>
+                        <span class="badge">57 Total Assets</span>
+                        <span class="badge">4 Channels</span>
+                        <span class="badge">7 Campaigns</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Card 1: Executive Summary -->
+            <a href="executive-summary.html" class="card">
+                <div class="card-header">
+                    <div class="card-icon">📋</div>
+                    <h2 class="card-title">Executive Summary</h2>
+                    <p class="card-subtitle">Strategic Overview</p>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">
+                        High-level overview of Q4 marketing strategy, including current state metrics,
+                        competitive advantages, critical insights, and strategic approach for the quarter.
+                    </p>
+                    <div class="card-meta">
+                        <span class="badge overview">Overview</span>
+                        <span class="badge">Strategy</span>
+                        <span class="badge">Goals</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Card 2: Key Metrics -->
+            <a href="key-metrics.html" class="card">
+                <div class="card-header">
+                    <div class="card-icon">📊</div>
+                    <h2 class="card-title">Key Metrics</h2>
+                    <p class="card-subtitle">Success Indicators</p>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">
+                        Primary goals, success metrics, and campaign targets. Includes revenue per customer
+                        targets and conversion rates for all 7 campaigns (A-G).
+                    </p>
+                    <div class="card-meta">
+                        <span class="badge metrics">Metrics</span>
+                        <span class="badge">KPIs</span>
+                        <span class="badge">Targets</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Card 3: Databases -->
+            <a href="databases.html" class="card">
+                <div class="card-header">
+                    <div class="card-icon">🗄️</div>
+                    <h2 class="card-title">Database Segments</h2>
+                    <p class="card-subtitle">Audience Targeting</p>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">
+                        Complete list of required BI audience segments for campaign execution. Includes
+                        funding, activity, and revenue segments with detailed criteria for each.
+                    </p>
+                    <div class="card-meta">
+                        <span class="badge data">Data</span>
+                        <span class="badge">Segments</span>
+                        <span class="badge">10 Audiences</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Card 4: Problems -->
+            <a href="problems.html" class="card">
+                <div class="card-header">
+                    <div class="card-icon">🎯</div>
+                    <h2 class="card-title">Problems & Solutions</h2>
+                    <p class="card-subtitle">Strategic Challenges</p>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">
+                        Deep dive into the three core problems: Funding (DD recovery), Activity
+                        (lost/inactive users), and Revenue (IMT holiday push). Each with full campaign details.
+                    </p>
+                    <div class="card-meta">
+                        <span class="badge problems">Problems</span>
+                        <span class="badge">3 Challenges</span>
+                        <span class="badge">Solutions</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Card 5: Execution -->
+            <a href="execution.html" class="card">
+                <div class="card-header">
+                    <div class="card-icon">🚀</div>
+                    <h2 class="card-title">Execution Strategy</h2>
+                    <p class="card-subtitle">Campaign Implementation</p>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">
+                        Complete execution playbook including email campaigns (A-G), in-app messages,
+                        push notifications, and social media strategy with bilingual content.
+                    </p>
+                    <div class="card-meta">
+                        <span class="badge execution">Execution</span>
+                        <span class="badge">7 Campaigns</span>
+                        <span class="badge">Bilingual</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Card 6: Project Management -->
+            <a href="project-management.html" class="card">
+                <div class="card-header">
+                    <div class="card-icon">📅</div>
+                    <h2 class="card-title">Project Management</h2>
+                    <p class="card-subtitle">Timeline & Checklist</p>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">
+                        8-week implementation timeline with week-by-week breakdown and quick start
+                        checklist to ensure smooth execution from Week 1 through December 31st.
+                    </p>
+                    <div class="card-meta">
+                        <span class="badge timeline">Timeline</span>
+                        <span class="badge">8 Weeks</span>
+                        <span class="badge">Checklist</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <footer>
+            <p>MyBambu Q4 Action Plan Hub &copy; 2025 | Marketing Strategy Nov-Dec 2025</p>
+        </footer>
+    </div>
+</body>
+</html>

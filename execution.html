@@ -1,0 +1,1982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Execution Strategy | MyBambu Q4 Action Plan</title>
+    <style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bamboo-green: #2ECC71;
+            --bamboo-dark-green: #27AE60;
+            --bamboo-light-green: #A8E6CF;
+            --bamboo-navy: #1A3A52;
+            --bamboo-dark: #0F2537;
+            --text-dark: #2C3E50;
+            --text-light: #7F8C8D;
+            --bg-light: #F8F9FA;
+            --border: #E1E8ED;
+            --white: #FFFFFF;
+            --red: #E74C3C;
+            --orange: #F39C12;
+            --blue: #3498DB;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-light);
+        }
+
+        /* Side Navigation */
+        .sidenav {
+            height: 100%;
+            width: 280px;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            background: var(--bamboo-dark);
+            overflow-x: hidden;
+            overflow-y: auto;
+            padding-top: 20px;
+            padding-bottom: 40px;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        }
+
+        .sidenav .logo {
+            padding: 0 25px 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sidenav .logo h1 {
+            color: var(--bamboo-green);
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .sidenav .logo p {
+            color: var(--bamboo-light-green);
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .sidenav a {
+            padding: 12px 25px;
+            text-decoration: none;
+            font-size: 14px;
+            color: #BDC3C7;
+            display: block;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+
+        .sidenav a:hover {
+            background: rgba(46, 204, 113, 0.1);
+            color: var(--bamboo-light-green);
+            border-left-color: var(--bamboo-green);
+        }
+
+        .sidenav a.active {
+            background: rgba(46, 204, 113, 0.15);
+            color: var(--bamboo-green);
+            border-left-color: var(--bamboo-green);
+            font-weight: 600;
+        }
+
+        .sidenav .nav-section {
+            padding: 20px 25px 10px;
+            color: var(--bamboo-light-green);
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .sidenav a.sub-link {
+            padding: 8px 25px 8px 45px;
+            font-size: 13px;
+            color: #95A5A6;
+        }
+
+        .sidenav a.sub-link:hover {
+            color: var(--bamboo-light-green);
+        }
+
+        .sidenav a.sub-link.active {
+            color: var(--bamboo-green);
+        }
+
+        .back-to-hub {
+            padding: 12px 25px;
+            text-decoration: none;
+            font-size: 14px;
+            color: #BDC3C7;
+            display: block;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 10px;
+        }
+
+        .back-to-hub:hover {
+            background: rgba(46, 204, 113, 0.1);
+            color: var(--bamboo-light-green);
+            border-left-color: var(--bamboo-green);
+        }
+
+        .back-to-hub::before {
+            content: '← ';
+            margin-right: 5px;
+        }
+
+        /* Section Visibility */
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        /* Main Content */
+        .main {
+            margin-left: 280px;
+            padding: 40px;
+            max-width: 1400px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--bamboo-green) 0%, var(--bamboo-dark-green) 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 20px rgba(46, 204, 113, 0.3);
+        }
+
+        .header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* Alert Box */
+        .alert {
+            background: #FFF3CD;
+            border-left: 4px solid var(--orange);
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+
+        .alert strong {
+            color: var(--orange);
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+
+        .card h2 {
+            color: var(--bamboo-dark);
+            font-size: 28px;
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--bamboo-green);
+            padding-bottom: 10px;
+        }
+
+        .card h3 {
+            color: var(--bamboo-dark-green);
+            font-size: 22px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .card h4 {
+            color: var(--text-dark);
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        /* Problem Headers */
+        .problem-header {
+            background: linear-gradient(135deg, var(--bamboo-navy) 0%, var(--bamboo-dark) 100%);
+            color: white;
+            padding: 30px 40px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(26, 58, 82, 0.3);
+        }
+
+        .problem-header h2 {
+            font-size: 32px;
+            border: none;
+            padding: 0;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .problem-header .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .stat-box {
+            background: var(--bg-light);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--bamboo-green);
+        }
+
+        .stat-box .label {
+            font-size: 13px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .stat-box .value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .stat-box.negative {
+            border-left-color: var(--red);
+        }
+
+        .stat-box.warning {
+            border-left-color: var(--orange);
+        }
+
+        /* Campaign Box */
+        .campaign-box {
+            background: #F0F8F4;
+            border: 2px solid var(--bamboo-light-green);
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .campaign-box h4 {
+            color: var(--bamboo-dark-green);
+            margin-top: 0;
+        }
+
+        .campaign-box .campaign-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .campaign-box .meta-item {
+            font-size: 14px;
+        }
+
+        .campaign-box .meta-item strong {
+            color: var(--bamboo-dark-green);
+        }
+
+        /* Email Template */
+        .email-template {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            font-family: Georgia, serif;
+        }
+
+        .email-template .subject {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .email-template .content {
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        /* Code Block */
+        .code-block {
+            background: #F6F8FA;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        ul li, ol li {
+            margin-bottom: 8px;
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        .badge.primary {
+            background: var(--bamboo-light-green);
+            color: var(--bamboo-dark-green);
+        }
+
+        .badge.danger {
+            background: #FADBD8;
+            color: var(--red);
+        }
+
+        .badge.warning {
+            background: #FCF3CF;
+            color: var(--orange);
+        }
+
+        .badge.info {
+            background: #D6EAF8;
+            color: var(--blue);
+        }
+
+        /* Timeline */
+        .timeline {
+            margin: 25px 0;
+        }
+
+        .timeline-item {
+            padding: 20px;
+            background: white;
+            border-left: 4px solid var(--bamboo-green);
+            margin-bottom: 15px;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .timeline-item h5 {
+            color: var(--bamboo-dark-green);
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table th {
+            background: var(--bamboo-dark);
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        table td {
+            padding: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        table tr:hover {
+            background: var(--bg-light);
+        }
+
+        /* Checklist */
+        .checklist {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .checklist li {
+            padding: 10px;
+            padding-left: 35px;
+            position: relative;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .checklist li:before {
+            content: '☐';
+            position: absolute;
+            left: 10px;
+            color: var(--bamboo-green);
+            font-size: 18px;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 900px) {
+            .sidenav {
+                width: 0;
+                padding: 0;
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .sidenav {
+                display: none;
+            }
+
+            .main {
+                margin-left: 0;
+            }
+        }
+    </style>
+    </style>
+</head>
+<body>
+    <!-- Side Navigation -->
+    <div class="sidenav">
+        <div class="logo">
+            <h1>🎋 MyBambu</h1>
+            <p>Q4 2025 Action Plan</p>
+        </div>
+
+        <a href="index.html" class="back-to-hub">Back to Hub</a>
+
+        <div class="nav-section">Execution Channels</div>
+        <a href="#crm-email">📧 Email Campaigns</a>
+        <a href="#campaign-a" class="sub-link">Campaign A: Direct Deposit</a>
+        <a href="#campaign-b" class="sub-link">Campaign B: DD Reactivation</a>
+        <a href="#campaign-c" class="sub-link">Campaign C: Lost Customers</a>
+        <a href="#campaign-d" class="sub-link">Campaign D: Inactive Users</a>
+        <a href="#campaign-e" class="sub-link">Campaign E: Cluster Growth</a>
+        <a href="#campaign-f" class="sub-link">Campaign F: IMT Holiday</a>
+        <a href="#campaign-g" class="sub-link">Campaign G: Price Comparison</a>
+
+        <a href="#crm-inapp">📱 In-App Messages</a>
+        <a href="#crm-push">🔔 Push Notifications</a>
+
+        <div class="nav-section">Social Media</div>
+        <a href="#social-media">📱 Social Media Strategy</a>
+        <a href="#pillar-1" class="sub-link">Pillar 1: Price Comparison</a>
+        <a href="#pillar-2" class="sub-link">Pillar 2: Holiday Push</a>
+        <a href="#pillar-3" class="sub-link">Pillar 3: Educational</a>
+        <a href="#pillar-4" class="sub-link">Pillar 4: Customer Stories</a>
+        <a href="#stories-strategy" class="sub-link">Stories Strategy</a>
+        <a href="#posting-schedule" class="sub-link">Posting Schedule</a>
+        <a href="#engagement-strategy" class="sub-link">Engagement Strategy</a>
+        <a href="#content-creation" class="sub-link">Content Creation</a>
+
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+        <!-- Header -->
+        <div class="header">
+            <h1>Execution Strategy</h1>
+            <p>MyBambu Q4 2025 Action Plan</p>
+        </div>
+
+        <div id="crm-email" class="card content-section active">
+            <h2>📧 Email Campaigns</h2>
+            <p>All email campaigns organized by objective. Each campaign includes email copy, targeting, and success metrics.</p>
+
+            <h3 id="campaign-a">Campaign A: Direct Deposit Education & Setup</h3>
+            <div class="campaign-box">
+                <h4>Campaign Overview</h4>
+                <div class="campaign-meta">
+                    <div class="meta-item"><strong>Objective:</strong> Increase direct deposit adoption</div>
+                    <div class="meta-item"><strong>Audiences:</strong> New_NoCard_Funding, HasCard_LowFunding, GigEconomy_DirectDeposit_Eligible</div>
+                    <div class="meta-item"><strong>Target:</strong> 5% conversion rate</div>
+                </div>
+
+                <h4>Email 1: "Set Up Once, Get Paid Automatically" / "Configúralo Una Vez, Cobra Automático"</h4>
+
+                <p><strong>🇺🇸 ENGLISH VERSION</strong></p>
+                <div class="email-template">
+                    <div class="subject">💰 Set up once, get paid automatically</div>
+                    <div class="content">
+                        <p>Hey [First Name],</p>
+                        <p>Tired of going to ATMs or transferring money every payday?</p>
+                        <p>Set up direct deposit with MyBambu and your paycheck lands in your account automatically - every single time.</p>
+                        <p>WHY DIRECT DEPOSIT:</p>
+                        <ul>
+                            <li>✓ 100% free (always)</li>
+                            <li>✓ Automatic - happens every payday</li>
+                            <li>✓ No ATMs needed</li>
+                            <li>✓ No transfer fees</li>
+                            <li>✓ One-time setup</li>
+                            <li>✓ Works with any employer</li>
+                        </ul>
+                        <p><strong>[Set Up Direct Deposit Now]</strong></p>
+                        <p>WHAT YOU NEED:<br>
+                        • Your MyBambu routing number<br>
+                        • Your account number<br>
+                        (Both in your app: Settings > Direct Deposit)</p>
+                        <p>*Initial setup takes 3-7 business days. First deposit may take 1-2 pay cycles depending on your employer's processing time.</p>
+                        <p>Never think about funding again. Set it up once, you're done.</p>
+                        <p>MyBambu Team</p>
+                        <p><em>P.S. Need help? Chat with our AI assistant in the app.</em></p>
+                    </div>
+                </div>
+
+                <p><strong>🇪🇸 SPANISH VERSION</strong></p>
+                <div class="email-template">
+                    <div class="subject">💰 Configúralo una vez, cobra automático</div>
+                    <div class="content">
+                        <p>Hola [First Name],</p>
+                        <p>¿Cansado de ir al cajero o transferir plata cada día de pago?</p>
+                        <p>Configura el depósito directo con MyBambu y tu cheque llega a tu cuenta automáticamente - cada vez.</p>
+                        <p>POR QUÉ DEPÓSITO DIRECTO:</p>
+                        <ul>
+                            <li>✓ 100% gratis (siempre)</li>
+                            <li>✓ Automático - pasa cada día de pago</li>
+                            <li>✓ Sin necesidad de cajeros</li>
+                            <li>✓ Sin comisiones de transferencia</li>
+                            <li>✓ Configuración de una sola vez</li>
+                            <li>✓ Funciona con cualquier empleador</li>
+                        </ul>
+                        <p><strong>[Configurar Depósito Directo Ahora]</strong></p>
+                        <p>LO QUE NECESITAS:<br>
+                        • Tu número de ruta de MyBambu<br>
+                        • Tu número de cuenta<br>
+                        (Ambos en tu app: Configuración > Depósito Directo)</p>
+                        <p>*La configuración inicial toma 3-7 días hábiles. El primer depósito puede tardar 1-2 quincenas dependiendo del tiempo de procesamiento de tu empleador.</p>
+                        <p>No pienses más en meter plata. Configúralo una vez y listo.</p>
+                        <p>Equipo MyBambu</p>
+                        <p><em>PD: ¿Necesitas ayuda? Chatea con nuestro asistente de IA en la app.</em></p>
+                    </div>
+                </div>
+
+                <h4>Email 2: "4 Easy Ways to Add Money" / "4 Formas Fáciles de Agregar Dinero"</h4>
+
+                <p><strong>🇺🇸 ENGLISH VERSION</strong></p>
+                <div class="email-template">
+                    <div class="subject">Pick your favorite: 4 ways to add money 💳</div>
+                    <div class="content">
+                        <p>Hey [First Name],</p>
+                        <p>Ready to start using MyBambu? Pick whichever way works best for you:</p>
+                        <p><strong>1️⃣ DIRECT DEPOSIT (We love this one! ⭐)</strong><br>
+                        • Your paycheck deposits automatically<br>
+                        • Totally free<br>
+                        • Happens every payday<br>
+                        [Set It Up]</p>
+
+                        <p><strong>2️⃣ VIRTUAL CARD (New!)</strong><br>
+                        • Get an instant virtual card<br>
+                        • Add money from any debit card<br>
+                        • Start shopping online right away<br>
+                        [Get My Virtual Card]</p>
+
+                        <p><strong>3️⃣ CARD TRANSFER</strong><br>
+                        • Transfer from any debit card<br>
+                        • Money arrives in minutes<br>
+                        • Small fee<br>
+                        [Transfer Now]</p>
+
+                        <p><strong>4️⃣ CASH DEPOSIT</strong><br>
+                        • Use your barcode at 90,000+ stores<br>
+                        • Nationwide<br>
+                        • Small fee<br>
+                        [Get My Barcode]</p>
+
+                        <p>Pick one and let's get you started!</p>
+                        <p>Got questions? Chat with our AI assistant in the app.</p>
+                        <p>MyBambu Team</p>
+                    </div>
+                </div>
+
+                <p><strong>🇪🇸 SPANISH VERSION</strong></p>
+                <div class="email-template">
+                    <div class="subject">Elige tu favorito: 4 formas de agregar dinero 💳</div>
+                    <div class="content">
+                        <p>Hola [First Name],</p>
+                        <p>¿Listo para usar MyBambu? Elige la forma que más te convenga:</p>
+                        <p><strong>1️⃣ DEPÓSITO DIRECTO (¡Nos encanta esta! ⭐)</strong><br>
+                        • Tu cheque se deposita automáticamente<br>
+                        • Totalmente gratis<br>
+                        • Cada día de pago<br>
+                        [Configurar]</p>
+
+                        <p><strong>2️⃣ TARJETA VIRTUAL (¡Nuevo!)</strong><br>
+                        • Obtén una tarjeta virtual al instante<br>
+                        • Agrega dinero desde cualquier tarjeta de débito<br>
+                        • Empieza a comprar en línea de inmediato<br>
+                        [Obtener Mi Tarjeta Virtual]</p>
+
+                        <p><strong>3️⃣ TRANSFERENCIA DESDE TU TARJETA</strong><br>
+                        • Transfiere desde cualquier tarjeta de débito<br>
+                        • El dinero llega en minutos<br>
+                        • Comisión pequeña<br>
+                        [Transferir Ahora]</p>
+
+                        <p><strong>4️⃣ DEPÓSITO EN EFECTIVO</strong><br>
+                        • Usa tu código de barras en más de 90,000 tiendas<br>
+                        • En todo el país<br>
+                        • Comisión pequeña<br>
+                        [Obtener Mi Código]</p>
+
+                        <p>¡Elige uno y comencemos!</p>
+                        <p>¿Tienes preguntas? Chatea con nuestro asistente de IA en la app.</p>
+                        <p>Equipo MyBambu</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 id="campaign-b">Campaign B: Re-engage Direct Deposit Churned Users</h3>
+            <div class="campaign-box">
+                <h4>Campaign Overview</h4>
+                <div class="campaign-meta">
+                    <div class="meta-item"><strong>Objective:</strong> Win back users who stopped using direct deposit</div>
+                    <div class="meta-item"><strong>Audiences:</strong> DirectDeposit_Churned</div>
+                    <div class="meta-item"><strong>Target:</strong> 10% conversion rate</div>
+                </div>
+
+                <h4>Email: "We Miss Your Direct Deposit" / "Extrañamos Tu Depósito Directo"</h4>
+
+                <p><strong>🇺🇸 ENGLISH VERSION</strong></p>
+                <div class="email-template">
+                    <div class="subject">Everything okay? We noticed you stopped using direct deposit</div>
+                    <div class="content">
+                        <p>Hey [First Name],</p>
+                        <p>We noticed you haven't been using direct deposit lately.</p>
+                        <p>Everything okay? Did something change?</p>
+                        <ul>
+                            <li>• New job?</li>
+                            <li>• Running into issues?</li>
+                            <li>• Something we can help with?</li>
+                        </ul>
+                        <p>Just so you know, direct deposit with MyBambu still:</p>
+                        <ul>
+                            <li>✓ Gets you paid automatically</li>
+                            <li>✓ Is 100% free</li>
+                            <li>✓ Works every payday</li>
+                        </ul>
+                        <p>Want to set it up again?<br>
+                        <strong>[Reactivate My Direct Deposit]</strong></p>
+                        <p>Or chat with our AI assistant in the app to tell us what's going on. We're here to help.</p>
+                        <p>MyBambu Team</p>
+                    </div>
+                </div>
+
+                <p><strong>🇪🇸 SPANISH VERSION</strong></p>
+                <div class="email-template">
+                    <div class="subject">¿Todo bien? Notamos que dejaste de usar el depósito directo</div>
+                    <div class="content">
+                        <p>Hola [First Name],</p>
+                        <p>Notamos que no has usado el depósito directo últimamente.</p>
+                        <p>¿Todo bien? ¿Cambió algo?</p>
+                        <ul>
+                            <li>• ¿Nuevo trabajo?</li>
+                            <li>• ¿Tienes algún problema?</li>
+                            <li>• ¿Algo en lo que podamos ayudarte?</li>
+                        </ul>
+                        <p>Solo para que sepas, el depósito directo con MyBambu todavía:</p>
+                        <ul>
+                            <li>✓ Te paga automáticamente</li>
+                            <li>✓ Es 100% gratis</li>
+                            <li>✓ Funciona cada día de pago</li>
+                        </ul>
+                        <p>¿Quieres configurarlo otra vez?<br>
+                        <strong>[Reactivar Mi Depósito Directo]</strong></p>
+                        <p>O chatea con nuestro asistente de IA en la app para contarnos qué pasó. Estamos aquí para ayudar.</p>
+                        <p>Equipo MyBambu</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 id="campaign-c">Campaign C: Lost Customer Win-Back</h3>
+            <div class="campaign-box">
+                <h4>Campaign Overview</h4>
+                <div class="campaign-meta">
+                    <div class="meta-item"><strong>Objective:</strong> Reactivate 34,000 lost customers</div>
+                    <div class="meta-item"><strong>Audiences:</strong> Lost_Customers_Oct2025</div>
+                    <div class="meta-item"><strong>Target:</strong> 15% reactivation (6,800 users)</div>
+                </div>
+
+                <h4>Email 1: "We Miss You" / "Te Extrañamos" (Day 1)</h4>
+
+                <p><strong>🇺🇸 ENGLISH VERSION</strong></p>
+                <div class="email-template">
+                    <div class="subject">Haven't seen you around, [First Name]</div>
+                    <div class="content">
+                        <p>Hey [First Name],</p>
+                        <p>We haven't seen you in a while. Everything okay?</p>
+                        <p>Your MyBambu account is still here and ready whenever you are.</p>
+                        <p>Remember what's waiting for you:</p>
+                        <ul>
+                            <li>• Send money for just $0.85</li>
+                            <li>• Get paid automatically with direct deposit</li>
+                            <li>• Use 90,000+ fee-free ATMs</li>
+                            <li>• Pay your bills instantly</li>
+                        </ul>
+                        <p>Come back whenever you're ready. We're here.</p>
+                        <p><strong>[Open MyBambu]</strong></p>
+                        <p>MyBambu Team</p>
+                        <p><em>P.S. Need help? Chat with our AI assistant in the app.</em></p>
+                    </div>
+                </div>
+
+                <p><strong>🇪🇸 SPANISH VERSION</strong></p>
+                <div class="email-template">
+                    <div class="subject">No te hemos visto por aquí, [First Name]</div>
+                    <div class="content">
+                        <p>Hola [First Name],</p>
+                        <p>No te hemos visto en un tiempo. ¿Todo bien?</p>
+                        <p>Tu cuenta de MyBambu sigue aquí y lista cuando la necesites.</p>
+                        <p>Recuerda lo que te espera:</p>
+                        <ul>
+                            <li>• Envía dinero por solo $0.85</li>
+                            <li>• Cobra automático con depósito directo</li>
+                            <li>• Usa más de 90,000 cajeros sin comisión</li>
+                            <li>• Paga tus cuentas al instante</li>
+                        </ul>
+                        <p>Regresa cuando estés listo. Aquí estamos.</p>
+                        <p><strong>[Abrir MyBambu]</strong></p>
+                        <p>Equipo MyBambu</p>
+                        <p><em>PD: ¿Necesitas ayuda? Chatea con nuestro asistente de IA en la app.</em></p>
+                    </div>
+                </div>
+
+                <h4>Email 2: Personalized by Last Product Used (Day 5)</h4>
+
+                <p><strong>Version A: Last used IMT / Última vez usó transferencias</strong></p>
+
+                <p><strong>🇺🇸 ENGLISH VERSION</strong></p>
+                <div class="email-template">
+                    <div class="subject">Still the cheapest way to send money home: $0.85</div>
+                    <div class="content">
+                        <p>Hey [First Name],</p>
+                        <p>Need to send money home?</p>
+                        <p>MyBambu still charges just $0.85 to send money to:</p>
+                        <ul>
+                            <li>• Mexico</li>
+                            <li>• Guatemala</li>
+                            <li>• Honduras</li>
+                            <li>• Nicaragua</li>
+                            <li>• And more countries</li>
+                        </ul>
+                        <p>Other services? $2-$5 every time. Why pay more?</p>
+                        <p><strong>[Send Money Now]</strong></p>
+                        <p>Fast. Easy. Always $0.85.</p>
+                        <p>MyBambu Team</p>
+                    </div>
+                </div>
+
+                <p><strong>🇪🇸 SPANISH VERSION</strong></p>
+                <div class="email-template">
+                    <div class="subject">Aún la forma más barata de enviar dinero: $0.85</div>
+                    <div class="content">
+                        <p>Hola [First Name],</p>
+                        <p>¿Necesitas enviar dinero a casa?</p>
+                        <p>MyBambu todavía cobra solo $0.85 para enviar dinero a:</p>
+                        <ul>
+                            <li>• México</li>
+                            <li>• Guatemala</li>
+                            <li>• Honduras</li>
+                            <li>• Nicaragua</li>
+                            <li>• Y más países</li>
+                        </ul>
+                        <p>¿Otros servicios? $2-$5 cada vez. ¿Por qué pagar más?</p>
+                        <p><strong>[Enviar Dinero Ahora]</strong></p>
+                        <p>Rápido. Fácil. Siempre $0.85.</p>
+                        <p>Equipo MyBambu</p>
+                    </div>
+                </div>
+
+                <p><strong>Version B: Last used Card / Última vez usó tarjeta</strong></p>
+
+                <p><strong>🇺🇸 ENGLISH VERSION</strong></p>
+                <div class="email-template">
+                    <div class="subject">Your MyBambu card is still ready to use</div>
+                    <div class="content">
+                        <p>Hey [First Name],</p>
+                        <p>Your MyBambu card is still active and waiting for you.</p>
+                        <p>Use it for:</p>
+                        <ul>
+                            <li>• 90,000+ fee-free ATMs</li>
+                            <li>• Shopping anywhere Visa is accepted</li>
+                            <li>• Online purchases</li>
+                            <li>• Earning cashback on every swipe</li>
+                        </ul>
+                        <p><strong>[Check My Balance]</strong></p>
+                        <p>MyBambu Team</p>
+                    </div>
+                </div>
+
+                <p><strong>🇪🇸 SPANISH VERSION</strong></p>
+                <div class="email-template">
+                    <div class="subject">Tu tarjeta MyBambu sigue lista para usar</div>
+                    <div class="content">
+                        <p>Hola [First Name],</p>
+                        <p>Tu tarjeta MyBambu sigue activa y esperándote.</p>
+                        <p>Úsala para:</p>
+                        <ul>
+                            <li>• Más de 90,000 cajeros sin comisión</li>
+                            <li>• Compras donde acepten Visa</li>
+                            <li>• Compras en línea</li>
+                            <li>• Ganar cashback en cada compra</li>
+                        </ul>
+                        <p><strong>[Ver Mi Saldo]</strong></p>
+                        <p>Equipo MyBambu</p>
+                    </div>
+                </div>
+
+                <h4>Email 3: Incentive / Incentivo (Day 10 - if no response)</h4>
+
+                <p><strong>🇺🇸 ENGLISH VERSION</strong></p>
+                <div class="email-template">
+                    <div class="subject">Come back = First 4 transfers FREE 🎁</div>
+                    <div class="content">
+                        <p>Hey [First Name],</p>
+                        <p>We really want you back.</p>
+                        <p>So here's the deal: Come back to MyBambu this week and your first 4 money transfers are on us.</p>
+                        <p>🎁 <strong>First 4 transfers: 100% FREE</strong> (that's $3.40 we're covering)</p>
+                        <p>No games. No fine print. Just come back and use MyBambu.</p>
+                        <p>Offer expires: [Date - 7 days from send]</p>
+                        <p><strong>[Claim My Free Transfers]</strong></p>
+                        <p>MyBambu Team</p>
+                    </div>
+                </div>
+
+                <p><strong>🇪🇸 SPANISH VERSION</strong></p>
+                <div class="email-template">
+                    <div class="subject">Regresa = Primeras 4 transferencias GRATIS 🎁</div>
+                    <div class="content">
+                        <p>Hola [First Name],</p>
+                        <p>De verdad queremos que regreses.</p>
+                        <p>Así que aquí está el trato: Regresa a MyBambu esta semana y tus primeras 4 transferencias de dinero corren por nuestra cuenta.</p>
+                        <p>🎁 <strong>Primeras 4 transferencias: 100% GRATIS</strong> (nosotros cubrimos los $3.40)</p>
+                        <p>Sin trucos. Sin letra pequeña. Solo regresa y usa MyBambu.</p>
+                        <p>La oferta expira: [Date - 7 days from send]</p>
+                        <p><strong>[Reclamar Mis Transferencias Gratis]</strong></p>
+                        <p>Equipo MyBambu</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 id="campaign-d">Campaign D: Inactive Current Users Activation</h3>
+            <div class="campaign-box">
+                <h4>Campaign Overview</h4>
+                <div class="campaign-meta">
+                    <div class="meta-item"><strong>Objective:</strong> Activate 65,000 inactive users before they fully churn</div>
+                    <div class="meta-item"><strong>Audiences:</strong> Inactive_Current_Nov2025</div>
+                    <div class="meta-item"><strong>Target:</strong> 10% activation (9,750 users)</div>
+                </div>
+
+                <h4>Email: "Still Here?" / "¿Sigues Aquí?"</h4>
+
+                <p><strong>🇺🇸 ENGLISH VERSION</strong></p>
+                <div class="email-template">
+                    <div class="subject">Quick check-in: Everything okay?</div>
+                    <div class="content">
+                        <p>Hey [First Name],</p>
+                        <p>Just checking in. We haven't seen you around in [X days].</p>
+                        <p>Everything okay?</p>
+                        <p>If something's not working right → Let us know<br>
+                        If you found something better → We'd love to hear about it<br>
+                        If life just got crazy busy → We totally get it</p>
+                        <p>We're still here whenever you need us:</p>
+                        <ul>
+                            <li>💸 Send money: $0.85</li>
+                            <li>💰 Direct deposit: FREE</li>
+                            <li>🏧 Fee-free ATMs: 90,000+</li>
+                        </ul>
+                        <p><strong>[Open MyBambu]</strong></p>
+                        <p>Or chat with our AI assistant in the app to let us know what's going on.</p>
+                        <p>MyBambu Team</p>
+                    </div>
+                </div>
+
+                <p><strong>🇪🇸 SPANISH VERSION</strong></p>
+                <div class="email-template">
+                    <div class="subject">Un check rápido: ¿Todo bien?</div>
+                    <div class="content">
+                        <p>Hola [First Name],</p>
+                        <p>Solo quería saludarte. No te hemos visto por aquí en [X días].</p>
+                        <p>¿Todo bien?</p>
+                        <p>Si algo no funciona bien → Cuéntanos<br>
+                        Si encontraste algo mejor → Nos gustaría saberlo<br>
+                        Si la vida se puso muy ocupada → Lo entendemos totalmente</p>
+                        <p>Seguimos aquí cuando nos necesites:</p>
+                        <ul>
+                            <li>💸 Envía dinero: $0.85</li>
+                            <li>💰 Depósito directo: GRATIS</li>
+                            <li>🏧 Cajeros sin comisión: más de 90,000</li>
+                        </ul>
+                        <p><strong>[Abrir MyBambu]</strong></p>
+                        <p>O chatea con nuestro asistente de IA en la app para contarnos qué pasa.</p>
+                        <p>Equipo MyBambu</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 id="campaign-e">Campaign E: Cluster Growth (Shappire/Ruby → Ruby/Emerald)</h3>
+            <div class="campaign-box">
+                <h4>Campaign Overview</h4>
+                <div class="campaign-meta">
+                    <div class="meta-item"><strong>Objective:</strong> Move users up cluster tiers</div>
+                    <div class="meta-item"><strong>Audiences:</strong> Clusters_Shappire_Ruby, Cluster_Decreased_Oct</div>
+                    <div class="meta-item"><strong>Target:</strong> 20% tier increase</div>
+                </div>
+
+                <h4>Email: "You're Almost There" / "Ya Casi Llegas"</h4>
+
+                <p><strong>🇺🇸 ENGLISH VERSION</strong></p>
+                <div class="email-template">
+                    <div class="subject">🎯 Just 2 more times this month!</div>
+                    <div class="content">
+                        <p>Hey [First Name],</p>
+                        <p>You're SO close to leveling up with MyBambu.</p>
+                        <p>Use MyBambu just 2 more times this month and unlock:</p>
+                        <ul>
+                            <li>✓ Better rewards</li>
+                            <li>✓ New features</li>
+                            <li>✓ Priority support</li>
+                        </ul>
+                        <p>What counts as a transaction:</p>
+                        <ul>
+                            <li>• Send money home</li>
+                            <li>• Use your card</li>
+                            <li>• Add funds</li>
+                            <li>• Pay a bill</li>
+                        </ul>
+                        <p>You've got this! 💪</p>
+                        <p><strong>[Use MyBambu Now]</strong></p>
+                        <p>MyBambu Team</p>
+                    </div>
+                </div>
+
+                <p><strong>🇪🇸 SPANISH VERSION</strong></p>
+                <div class="email-template">
+                    <div class="subject">🎯 ¡Solo 2 veces más este mes!</div>
+                    <div class="content">
+                        <p>Hola [First Name],</p>
+                        <p>Estás MUY cerca de subir de nivel con MyBambu.</p>
+                        <p>Usa MyBambu solo 2 veces más este mes y desbloquea:</p>
+                        <ul>
+                            <li>✓ Mejores recompensas</li>
+                            <li>✓ Nuevas funciones</li>
+                            <li>✓ Soporte prioritario</li>
+                        </ul>
+                        <p>Qué cuenta como transacción:</p>
+                        <ul>
+                            <li>• Enviar dinero a casa</li>
+                            <li>• Usar tu tarjeta</li>
+                            <li>• Agregar fondos</li>
+                            <li>• Pagar una cuenta</li>
+                        </ul>
+                        <p>¡Tú puedes! 💪</p>
+                        <p><strong>[Usar MyBambu Ahora]</strong></p>
+                        <p>Equipo MyBambu</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 id="campaign-f">Campaign F: International Money Transfer Holiday Push</h3>
+            <div class="campaign-box">
+                <h4>Campaign Overview</h4>
+                <div class="campaign-meta">
+                    <div class="meta-item"><strong>Objective:</strong> Increase IMT transactions 20% during Nov-Dec</div>
+                    <div class="meta-item"><strong>Audiences:</strong> All active users, Previous IMT users</div>
+                    <div class="meta-item"><strong>Target:</strong> 20% increase in IMT transactions</div>
+                </div>
+
+                <h4>Email 1: Holiday Announcement / Anuncio de Fiestas (Week 1)</h4>
+
+                <p><strong>🇺🇸 ENGLISH VERSION</strong></p>
+                <div class="email-template">
+                    <div class="subject">The holidays are here. Send money for just $0.85</div>
+                    <div class="content">
+                        <p>Hey [First Name],</p>
+                        <p>Holiday season is here. Time to help family back home prepare.</p>
+                        <p>With MyBambu:</p>
+                        <ul>
+                            <li>✓ Just $0.85 per transfer</li>
+                            <li>✓ Arrives in minutes</li>
+                            <li>✓ Send to Mexico, Guatemala, Honduras, Nicaragua & more</li>
+                        </ul>
+                        <p>Other services charge $2-$5. We charge $0.85. Every time.</p>
+                        <p><strong>[Send Money Home]</strong></p>
+                        <p>Your family's waiting.</p>
+                        <p>MyBambu Team</p>
+                    </div>
+                </div>
+
+                <p><strong>🇪🇸 SPANISH VERSION</strong></p>
+                <div class="email-template">
+                    <div class="subject">Llegaron las fiestas. Envía dinero por solo $0.85</div>
+                    <div class="content">
+                        <p>Hola [First Name],</p>
+                        <p>Ya llegó la temporada de fiestas. Hora de ayudar a la familia en casa a prepararse.</p>
+                        <p>Con MyBambu:</p>
+                        <ul>
+                            <li>✓ Solo $0.85 por transferencia</li>
+                            <li>✓ Llega en minutos</li>
+                            <li>✓ Envía a México, Guatemala, Honduras, Nicaragua y más</li>
+                        </ul>
+                        <p>Otros servicios cobran $2-$5. Nosotros cobramos $0.85. Siempre.</p>
+                        <p><strong>[Enviar Dinero a Casa]</strong></p>
+                        <p>Tu familia está esperando.</p>
+                        <p>Equipo MyBambu</p>
+                    </div>
+                </div>
+
+                <h4>Email 2: Family Gratitude / Gratitud Familiar (Nov 20)</h4>
+
+                <p><strong>🇺🇸 ENGLISH VERSION</strong></p>
+                <div class="email-template">
+                    <div class="subject">This time of year reminds us what matters most: family</div>
+                    <div class="content">
+                        <p>Hey [First Name],</p>
+                        <p>This time of year reminds us what truly matters: family.</p>
+                        <p>Even when miles separate us, you can show them you care.</p>
+                        <p>Send money home so your family can:</p>
+                        <ul>
+                            <li>• Buy what they need</li>
+                            <li>• Pay their bills on time</li>
+                            <li>• Have a little extra</li>
+                        </ul>
+                        <p>Just $0.85 to send.<br>
+                        Arrives in minutes.</p>
+                        <p><strong>[Send Now]</strong></p>
+                        <p>Be there for your family, no matter the distance.</p>
+                        <p>MyBambu Team</p>
+                    </div>
+                </div>
+
+                <p><strong>🇪🇸 SPANISH VERSION</strong></p>
+                <div class="email-template">
+                    <div class="subject">Esta época nos recuerda lo que más importa: la familia</div>
+                    <div class="content">
+                        <p>Hola [First Name],</p>
+                        <p>Esta época del año nos recuerda lo que realmente importa: la familia.</p>
+                        <p>Aunque estemos lejos, puedes demostrarles que te importan.</p>
+                        <p>Envía dinero a casa para que tu familia pueda:</p>
+                        <ul>
+                            <li>• Comprar lo que necesitan</li>
+                            <li>• Pagar sus cuentas a tiempo</li>
+                            <li>• Tener un poco extra</li>
+                        </ul>
+                        <p>Solo $0.85 para enviar.<br>
+                        Llega en minutos.</p>
+                        <p><strong>[Enviar Ahora]</strong></p>
+                        <p>Está presente para tu familia, sin importar la distancia.</p>
+                        <p>Equipo MyBambu</p>
+                    </div>
+                </div>
+
+                <h4>Email 3: End of Month Support / Apoyo de Fin de Mes (Nov 29)</h4>
+
+                <p><strong>🇺🇸 ENGLISH VERSION</strong></p>
+                <div class="email-template">
+                    <div class="subject">End of the month? Help your family with bills</div>
+                    <div class="content">
+                        <p>Hey [First Name],</p>
+                        <p>It's almost end of month. You know what that means - bills are due back home.</p>
+                        <p>Help your family stay on track:</p>
+                        <ul>
+                            <li>💰 Send money for just $0.85</li>
+                            <li>⚡ Arrives in minutes</li>
+                            <li>📱 Right from your phone</li>
+                        </ul>
+                        <p><strong>[Send Money Now]</strong></p>
+                        <p>Being there for them doesn't have to be expensive.</p>
+                        <p>MyBambu Team</p>
+                    </div>
+                </div>
+
+                <p><strong>🇪🇸 SPANISH VERSION</strong></p>
+                <div class="email-template">
+                    <div class="subject">¿Fin de mes? Ayuda a tu familia con las cuentas</div>
+                    <div class="content">
+                        <p>Hola [First Name],</p>
+                        <p>Ya casi es fin de mes. Ya sabes lo que eso significa - toca pagar las cuentas en casa.</p>
+                        <p>Ayuda a tu familia a estar al día:</p>
+                        <ul>
+                            <li>💰 Envía plata por solo $0.85</li>
+                            <li>⚡ Llega en minutos</li>
+                            <li>📱 Directo desde tu teléfono</li>
+                        </ul>
+                        <p><strong>[Enviar Dinero Ahora]</strong></p>
+                        <p>Estar ahí para ellos no tiene que ser caro.</p>
+                        <p>Equipo MyBambu</p>
+                    </div>
+                </div>
+
+                <h4>Email 4: Christmas Prep (Early December)</h4>
+
+                <p><strong>🇺🇸 ENGLISH VERSION</strong></p>
+                <div class="email-template">
+                    <div class="subject">Help your family prepare for Christmas</div>
+                    <div class="content">
+                        <p>Hi [First Name],</p>
+                        <p>Christmas is 3 weeks away.</p>
+                        <p>Help your family prepare:</p>
+                        <ul>
+                            <li>• Buy gifts</li>
+                            <li>• Cook special meals</li>
+                            <li>• Pay year-end bills</li>
+                        </ul>
+                        <p>Send money for just $0.85.<br>
+                        Fast. Easy. Cheap.</p>
+                        <p><strong>[Send to Family]</strong></p>
+                        <p>MyBambu Team</p>
+                    </div>
+                </div>
+
+                <p><strong>🇪🇸 SPANISH VERSION</strong></p>
+                <div class="email-template">
+                    <div class="subject">Ayuda a tu familia a prepararse para la Navidad</div>
+                    <div class="content">
+                        <p>Hola [First Name],</p>
+                        <p>Faltan 3 semanas para Navidad.</p>
+                        <p>Ayuda a tu familia a prepararse:</p>
+                        <ul>
+                            <li>• Comprar regalos</li>
+                            <li>• Cocinar comidas especiales</li>
+                            <li>• Pagar cuentas de fin de año</li>
+                        </ul>
+                        <p>Envía dinero por solo $0.85.<br>
+                        Rápido. Fácil. Barato.</p>
+                        <p><strong>[Enviar a la Familia]</strong></p>
+                        <p>Equipo MyBambu</p>
+                    </div>
+                </div>
+
+                <h4>Email 5: Last Minute (Dec 20)</h4>
+
+                <p><strong>🇺🇸 ENGLISH VERSION</strong></p>
+                <div class="email-template">
+                    <div class="subject">⏰ Last chance to send money before Christmas</div>
+                    <div class="content">
+                        <p>Hi [First Name],</p>
+                        <p>Christmas is 5 days away.</p>
+                        <p>Last chance to send money home.</p>
+                        <p>Still just $0.85.<br>
+                        Still arrives in minutes.</p>
+                        <p><strong>[Send Now - Last Chance]</strong></p>
+                        <p>Your family will thank you.</p>
+                        <p>MyBambu Team</p>
+                    </div>
+                </div>
+
+                <p><strong>🇪🇸 SPANISH VERSION</strong></p>
+                <div class="email-template">
+                    <div class="subject">⏰ Última oportunidad para enviar dinero antes de Navidad</div>
+                    <div class="content">
+                        <p>Hola [First Name],</p>
+                        <p>Faltan 5 días para Navidad.</p>
+                        <p>Última oportunidad para enviar dinero a casa.</p>
+                        <p>Todavía solo $0.85.<br>
+                        Todavía llega en minutos.</p>
+                        <p><strong>[Enviar Ahora - Última Oportunidad]</strong></p>
+                        <p>Tu familia te lo agradecerá.</p>
+                        <p>Equipo MyBambu</p>
+                    </div>
+                </div>
+
+                <h4 style="margin-top: 40px; color: var(--bamboo-dark-green); border-top: 3px solid var(--bamboo-green); padding-top: 20px;">📍 Country-Specific Personalization</h4>
+
+                <div class="alert" style="background: rgba(46, 204, 113, 0.1); border-left: 4px solid var(--bamboo-green);">
+                    <p><strong>Personalization Strategy:</strong> Use country-specific segments to personalize subject lines and email body. Mention the destination country and trusted local payers/banks to increase trust and conversion.</p>
+                    <p><strong>Expected Impact:</strong> 15-25% increase in open rates, 20-30% increase in conversion rates vs generic messaging.</p>
+                    <p><strong>Implementation:</strong> Create 10 email variations (one per country) for each of the 5 holiday emails above. Total: 50 country-specific email variations.</p>
+                </div>
+
+                <h4>Example: Email 1 - Mexico-Specific Version</h4>
+
+                <p><strong>🇺🇸 ENGLISH VERSION (Mexico Users)</strong></p>
+                <div class="email-template">
+                    <div class="subject">The holidays are here. Send money to Mexico for just $0.85</div>
+                    <div class="content">
+                        <p>Hey [First Name],</p>
+                        <p>Holiday season is here. Time to help family in Mexico prepare.</p>
+                        <p>With MyBambu:</p>
+                        <ul>
+                            <li>✓ Just $0.85 per transfer to Mexico</li>
+                            <li>✓ Arrives in minutes</li>
+                            <li>✓ Your family can receive at <strong>Elektra Mexico or Bancoppel</strong></li>
+                        </ul>
+                        <p>Send money to trusted locations your family knows and uses.</p>
+                        <p><strong>[Send Money to Mexico]</strong></p>
+                        <p>Your family's waiting.</p>
+                        <p>MyBambu Team</p>
+                    </div>
+                </div>
+
+                <p><strong>🇪🇸 SPANISH VERSION (Mexico Users)</strong></p>
+                <div class="email-template">
+                    <div class="subject">Llegaron las fiestas. Envía dinero a México por solo $0.85</div>
+                    <div class="content">
+                        <p>Hola [First Name],</p>
+                        <p>Ya llegó la temporada de fiestas. Hora de ayudar a la familia en México a prepararse.</p>
+                        <p>Con MyBambu:</p>
+                        <ul>
+                            <li>✓ Solo $0.85 por transferencia a México</li>
+                            <li>✓ Llega en minutos</li>
+                            <li>✓ Tu familia puede retirar en <strong>Elektra México o Bancoppel</strong></li>
+                        </ul>
+                        <p>Envía dinero a lugares confiables que tu familia conoce y usa.</p>
+                        <p><strong>[Enviar Dinero a México]</strong></p>
+                        <p>Tu familia está esperando.</p>
+                        <p>Equipo MyBambu</p>
+                    </div>
+                </div>
+
+                <h4>Example: Email 1 - Honduras-Specific Version</h4>
+
+                <p><strong>🇺🇸 ENGLISH VERSION (Honduras Users)</strong></p>
+                <div class="email-template">
+                    <div class="subject">The holidays are here. Send money to Honduras for just $0.85</div>
+                    <div class="content">
+                        <p>Hey [First Name],</p>
+                        <p>Holiday season is here. Time to help family in Honduras prepare.</p>
+                        <p>With MyBambu:</p>
+                        <ul>
+                            <li>✓ Just $0.85 per transfer to Honduras</li>
+                            <li>✓ Arrives in minutes</li>
+                            <li>✓ Your family can receive at <strong>Banco Atlantida or Elektra Honduras</strong></li>
+                        </ul>
+                        <p>Send money to trusted banks your family knows and uses.</p>
+                        <p><strong>[Send Money to Honduras]</strong></p>
+                        <p>Your family's waiting.</p>
+                        <p>MyBambu Team</p>
+                    </div>
+                </div>
+
+                <p><strong>🇪🇸 SPANISH VERSION (Honduras Users)</strong></p>
+                <div class="email-template">
+                    <div class="subject">Llegaron las fiestas. Envía dinero a Honduras por solo $0.85</div>
+                    <div class="content">
+                        <p>Hola [First Name],</p>
+                        <p>Ya llegó la temporada de fiestas. Hora de ayudar a la familia en Honduras a prepararse.</p>
+                        <p>Con MyBambu:</p>
+                        <ul>
+                            <li>✓ Solo $0.85 por transferencia a Honduras</li>
+                            <li>✓ Llega en minutos</li>
+                            <li>✓ Tu familia puede retirar en <strong>Banco Atlantida o Elektra Honduras</strong></li>
+                        </ul>
+                        <p>Envía dinero a bancos confiables que tu familia conoce y usa.</p>
+                        <p><strong>[Enviar Dinero a Honduras]</strong></p>
+                        <p>Tu familia está esperando.</p>
+                        <p>Equipo MyBambu</p>
+                    </div>
+                </div>
+
+                <h4>Complete Country-Specific Personalization Matrix</h4>
+
+                <div class="alert" style="background: #FFF3CD; border-left: 4px solid var(--orange);">
+                    <p><strong>Implementation Note:</strong> The examples above show Mexico and Honduras. Apply the same personalization pattern to all 10 countries for all 5 holiday emails.</p>
+                </div>
+
+                <table style="margin: 20px 0;">
+                    <thead>
+                        <tr>
+                            <th>Country</th>
+                            <th>Subject Line Personalization</th>
+                            <th>Body Personalization (Trusted Payers)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Mexico</strong></td>
+                            <td>"Send money to Mexico for just $0.85"</td>
+                            <td>Receive at <strong>Elektra Mexico or Bancoppel</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Honduras</strong></td>
+                            <td>"Send money to Honduras for just $0.85"</td>
+                            <td>Receive at <strong>Banco Atlantida or Elektra Honduras</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Nicaragua</strong></td>
+                            <td>"Send money to Nicaragua for just $0.85"</td>
+                            <td>Receive at <strong>Bancentro or Banpro</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Colombia</strong></td>
+                            <td>"Send money to Colombia for just $0.85"</td>
+                            <td>Receive at <strong>Bancolombia or Banco Davivienda</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Guatemala</strong></td>
+                            <td>"Send money to Guatemala for just $0.85"</td>
+                            <td>Receive at <strong>Banco Desarrollo Rural or Banrural</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ecuador</strong></td>
+                            <td>"Send money to Ecuador for just $0.85"</td>
+                            <td>Receive at <strong>Banco de Guayaquil or Banco Pichincha</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>El Salvador</strong></td>
+                            <td>"Send money to El Salvador for just $0.85"</td>
+                            <td>Receive at <strong>Banco Agricola or Fedecredito</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dominican Republic</strong></td>
+                            <td>"Send money to Dominican Republic for just $0.85"</td>
+                            <td>Receive at <strong>Banreservas or Banco BHD</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Venezuela</strong></td>
+                            <td>"Send money to Venezuela for just $0.85"</td>
+                            <td>Receive at <strong>Banco de Venezuela or Banesco</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Costa Rica</strong></td>
+                            <td>"Send money to Costa Rica for just $0.85"</td>
+                            <td>Receive at <strong>BAC San Jose or Banco Nacional</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="alert" style="background: rgba(46, 204, 113, 0.1); border-left: 4px solid var(--bamboo-green);">
+                    <p><strong>Email Production Workflow:</strong></p>
+                    <ol>
+                        <li>Create generic version of each email (5 emails)</li>
+                        <li>Create 10 country-specific variations per email (5 × 10 = 50 variations)</li>
+                        <li>Translate all variations to Spanish (50 English + 50 Spanish = 100 total email templates)</li>
+                        <li>Map each template to corresponding BI segment (IMT_Mexico_Users, IMT_Honduras_Users, etc.)</li>
+                        <li>Set up automated send based on user's IMT history and destination country</li>
+                    </ol>
+                </div>
+            </div>
+
+            <h3 id="campaign-g">Campaign G: Price Comparison (Competitive)</h3>
+            <div class="campaign-box">
+                <h4>Campaign Overview</h4>
+                <div class="campaign-meta">
+                    <div class="meta-item"><strong>Objective:</strong> Highlight price advantage vs competitors</div>
+                    <div class="meta-item"><strong>Audiences:</strong> All active users, Lost customers, Inactive users</div>
+                    <div class="meta-item"><strong>Target:</strong> 5% new IMT users</div>
+                </div>
+
+                <h4>Email: "Let's Talk About Our Prices"</h4>
+
+                <p><strong>🇺🇸 ENGLISH VERSION</strong></p>
+                <div class="email-template">
+                    <div class="subject">We need to tell you about our prices (you're welcome)</div>
+                    <div class="content">
+                        <p>Hi [First Name],</p>
+                        <p>We've been too nice.</p>
+                        <p>Let's be honest about what other companies charge vs. what we charge:</p>
+                        <p><strong>REMITLY: $1.99 per transfer<br>
+                        MYBAMBU: $0.85 per transfer<br>
+                        YOU SAVE: $1.14 every time</strong></p>
+                        <p>Send 10 times? You save $11.40<br>
+                        Send 20 times? You save $22.80</p>
+                        <p>And we're not just cheaper. We're also:</p>
+                        <ul>
+                            <li>• Just as fast</li>
+                            <li>• Just as easy</li>
+                            <li>• Just as reliable</li>
+                        </ul>
+                        <p>So why pay more?</p>
+                        <p><strong>[Send Money for $0.85]</strong></p>
+                        <p>- MyBambu Team</p>
+                    </div>
+                </div>
+
+                <p><strong>🇪🇸 SPANISH VERSION</strong></p>
+                <div class="email-template">
+                    <div class="subject">Tenemos que hablarte de nuestros precios (de nada)</div>
+                    <div class="content">
+                        <p>Hola [First Name],</p>
+                        <p>Hemos sido demasiado buenos.</p>
+                        <p>Seamos honestos sobre lo que otras compañías cobran vs. lo que cobramos nosotros:</p>
+                        <p><strong>REMITLY: $1.99 por transferencia<br>
+                        MYBAMBU: $0.85 por transferencia<br>
+                        TÚ AHORRAS: $1.14 cada vez</strong></p>
+                        <p>¿Envías 10 veces? Ahorras $11.40<br>
+                        ¿Envías 20 veces? Ahorras $22.80</p>
+                        <p>Y no solo somos más baratos. También somos:</p>
+                        <ul>
+                            <li>• Igual de rápidos</li>
+                            <li>• Igual de fáciles</li>
+                            <li>• Igual de confiables</li>
+                        </ul>
+                        <p>Entonces, ¿por qué pagar más?</p>
+                        <p><strong>[Enviar Dinero por $0.85]</strong></p>
+                        <p>- Equipo MyBambu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CRM: IN-APP MESSAGES -->
+        <div id="crm-inapp" class="card content-section">
+            <h2>📱 In-App Messages</h2>
+            <p>All in-app message triggers and copy organized by campaign. Display language based on user's app settings.</p>
+
+            <h3>Direct Deposit (Campaign A)</h3>
+
+            <p><strong>🇺🇸 ENGLISH:</strong></p>
+            <div class="code-block">💰 Get paid automatically
+Set up direct deposit in 3 minutes
+[Set Up Now] [Later]
+
+Trigger: User opens app, has no direct deposit
+Frequency: Once per week max</div>
+
+            <p><strong>🇪🇸 SPANISH:</strong></p>
+            <div class="code-block">💰 Cobra automático
+Configura el depósito directo en 3 minutos
+[Configurar Ahora] [Después]
+
+Trigger: User opens app, has no direct deposit
+Frequency: Once per week max</div>
+
+            <h3>Direct Deposit Churned (Campaign B)</h3>
+
+            <p><strong>🇺🇸 ENGLISH:</strong></p>
+            <div class="code-block">Haven't gotten your paycheck here lately
+
+Need help setting up direct deposit again?
+[Yes, Help Me] [No Thanks]
+
+Trigger: User had DD, none in 30 days
+Frequency: Once per month</div>
+
+            <p><strong>🇪🇸 SPANISH:</strong></p>
+            <div class="code-block">No has recibido tu cheque aquí últimamente
+
+¿Necesitas ayuda para configurar el depósito directo otra vez?
+[Sí, Ayúdame] [No Gracias]
+
+Trigger: User had DD, none in 30 days
+Frequency: Once per month</div>
+
+            <h3>Cluster Growth (Campaign E)</h3>
+
+            <p><strong>🇺🇸 ENGLISH:</strong></p>
+            <div class="code-block">🎯 So close!
+
+Just 2 more transactions this month to unlock better rewards.
+
+[Send Money] [View Rewards]
+
+Trigger: User logs in, low activity
+Frequency: Once per week in final week of month</div>
+
+            <p><strong>🇪🇸 SPANISH:</strong></p>
+            <div class="code-block">🎯 ¡Ya casi!
+
+Solo 2 transacciones más este mes para desbloquear mejores recompensas.
+
+[Enviar Dinero] [Ver Recompensas]
+
+Trigger: User logs in, low activity
+Frequency: Once per week in final week of month</div>
+
+            <h3>IMT Holiday (Campaign F)</h3>
+
+            <p><strong>🇺🇸 ENGLISH:</strong></p>
+            <div class="code-block">🎄 Send money home for the holidays
+
+Just $0.85 to Mexico, Guatemala, Honduras & more
+
+[Send Now]
+
+Trigger: User logs in during Nov-Dec
+Frequency: Once per week</div>
+
+            <p><strong>🇪🇸 SPANISH:</strong></p>
+            <div class="code-block">🎄 Envía dinero a casa para las fiestas
+
+Solo $0.85 a México, Guatemala, Honduras y más
+
+[Enviar Ahora]
+
+Trigger: User logs in during Nov-Dec
+Frequency: Once per week</div>
+
+            <h3>Price Comparison (Campaign G)</h3>
+
+            <p><strong>🇺🇸 ENGLISH:</strong></p>
+            <div class="code-block">💰 Save $1.14 every transfer
+
+Remitly: $1.99
+MyBambu: $0.85
+
+Same speed. Way better price.
+
+[Send Now]
+
+Trigger: User views IMT screen
+Frequency: Once per month</div>
+
+            <p><strong>🇪🇸 SPANISH:</strong></p>
+            <div class="code-block">💰 Ahorra $1.14 en cada transferencia
+
+Remitly: $1.99
+MyBambu: $0.85
+
+Misma velocidad. Mucho mejor precio.
+
+[Enviar Ahora]
+
+Trigger: User views IMT screen
+Frequency: Once per month</div>
+        </div>
+
+        <!-- CRM: PUSH NOTIFICATIONS -->
+        <div id="crm-push" class="card content-section">
+            <h2>🔔 Push Notifications</h2>
+            <p>All push notification schedules and copy organized by campaign. Send in user's preferred language.</p>
+
+            <h3>Direct Deposit (Campaign A)</h3>
+
+            <p><strong>🇺🇸 ENGLISH:</strong></p>
+            <ul>
+                <li><strong>Day 1 (Friday 10 AM):</strong> "💰 Payday! Get paid automatically with direct deposit. 100% free"</li>
+                <li><strong>Day 7 (If not converted):</strong> "Set it once, forget about it. Direct deposit = automatic paychecks 💰"</li>
+            </ul>
+
+            <p><strong>🇪🇸 SPANISH:</strong></p>
+            <ul>
+                <li><strong>Day 1 (Friday 10 AM):</strong> "💰 ¡Día de pago! Cobra automático con depósito directo. 100% gratis"</li>
+                <li><strong>Day 7 (If not converted):</strong> "Configúralo una vez, olvídate. Depósito directo = cheques automáticos 💰"</li>
+            </ul>
+
+            <h3>Direct Deposit Churned (Campaign B)</h3>
+
+            <p><strong>🇺🇸 ENGLISH:</strong></p>
+            <ul>
+                <li><strong>Friday 9 AM:</strong> "Miss automatic paychecks? Reactivate direct deposit. 100% free 💰"</li>
+            </ul>
+
+            <p><strong>🇪🇸 SPANISH:</strong></p>
+            <ul>
+                <li><strong>Friday 9 AM:</strong> "¿Extrañas los cheques automáticos? Reactiva el depósito directo. 100% gratis 💰"</li>
+            </ul>
+
+            <h3>Lost Customer Win-Back (Campaign C)</h3>
+
+            <p><strong>🇺🇸 ENGLISH:</strong></p>
+            <ul>
+                <li><strong>Day 1:</strong> "Haven't seen you around. Your MyBambu account is ready when you are 👋"</li>
+                <li><strong>Day 7:</strong> "Still the cheapest: Send money for $0.85. Come back to MyBambu"</li>
+                <li><strong>Day 14:</strong> "🎁 Come back this week = First transfer FREE"</li>
+            </ul>
+
+            <p><strong>🇪🇸 SPANISH:</strong></p>
+            <ul>
+                <li><strong>Day 1:</strong> "No te hemos visto. Tu cuenta MyBambu está lista cuando la necesites 👋"</li>
+                <li><strong>Day 7:</strong> "Aún el más barato: Envía dinero por $0.85. Regresa a MyBambu"</li>
+                <li><strong>Day 14:</strong> "🎁 Regresa esta semana = Primera transferencia GRATIS"</li>
+            </ul>
+
+            <h3>Inactive Users (Campaign D)</h3>
+
+            <p><strong>🇺🇸 ENGLISH:</strong></p>
+            <ul>
+                <li><strong>Day 1:</strong> "Hey! Everything okay? Haven't seen you in a while 👋"</li>
+                <li><strong>Day 5:</strong> "Your MyBambu account is still here. Need anything?"</li>
+            </ul>
+
+            <p><strong>🇪🇸 SPANISH:</strong></p>
+            <ul>
+                <li><strong>Day 1:</strong> "¡Hola! ¿Todo bien? No te hemos visto en un tiempo 👋"</li>
+                <li><strong>Day 5:</strong> "Tu cuenta MyBambu sigue aquí. ¿Necesitas algo?"</li>
+            </ul>
+
+            <h3>Cluster Growth (Campaign E)</h3>
+
+            <p><strong>🇺🇸 ENGLISH:</strong></p>
+            <ul>
+                <li><strong>End of month (if not reached):</strong> "🎯 Just 2 more transactions for better rewards. 3 days left!"</li>
+            </ul>
+
+            <p><strong>🇪🇸 SPANISH:</strong></p>
+            <ul>
+                <li><strong>End of month (if not reached):</strong> "🎯 Solo 2 transacciones más para mejores recompensas. ¡Quedan 3 días!"</li>
+            </ul>
+
+            <h3>IMT Holiday Push (Campaign F) - Nov-Dec Schedule</h3>
+
+            <p><strong>🇺🇸 ENGLISH:</strong></p>
+            <ul>
+                <li><strong>Nov 15:</strong> "💚 Thinking of family back home? Send money for $0.85"</li>
+                <li><strong>Nov 22:</strong> "Show your family you care. Send money in minutes for $0.85"</li>
+                <li><strong>Nov 29:</strong> "💵 End of month bills due? Help your family. Send for $0.85"</li>
+                <li><strong>Dec 6:</strong> "🎄 Christmas in 3 weeks. Send money home for $0.85"</li>
+                <li><strong>Dec 13:</strong> "2 weeks until Christmas. Help your family prepare. $0.85"</li>
+                <li><strong>Dec 20:</strong> "⏰ Last chance before Christmas! Send money for $0.85"</li>
+            </ul>
+
+            <p><strong>🇪🇸 SPANISH:</strong></p>
+            <ul>
+                <li><strong>Nov 15:</strong> "💚 ¿Pensando en tu familia? Envía dinero por $0.85"</li>
+                <li><strong>Nov 22:</strong> "Demuéstrales a tu familia que te importan. Envía dinero en minutos por $0.85"</li>
+                <li><strong>Nov 29:</strong> "💵 ¿Ya toca pagar cuentas? Ayuda a tu familia. Envía por $0.85"</li>
+                <li><strong>Dec 6:</strong> "🎄 Navidad en 3 semanas. Envía dinero a casa por $0.85"</li>
+                <li><strong>Dec 13:</strong> "Faltan 2 semanas para Navidad. Ayuda a tu familia a prepararse. $0.85"</li>
+                <li><strong>Dec 20:</strong> "⏰ ¡Última oportunidad antes de Navidad! Envía dinero por $0.85"</li>
+            </ul>
+
+            <h3>Price Comparison (Campaign G)</h3>
+
+            <p><strong>🇺🇸 ENGLISH:</strong></p>
+            <ul>
+                <li><strong>Message:</strong> "💰 Why pay $1.99 when you can pay $0.85? Send money with MyBambu"</li>
+                <li><strong>Frequency:</strong> Once per month to all active users</li>
+            </ul>
+
+            <p><strong>🇪🇸 SPANISH:</strong></p>
+            <ul>
+                <li><strong>Message:</strong> "💰 ¿Por qué pagar $1.99 cuando puedes pagar $0.85? Envía dinero con MyBambu"</li>
+                <li><strong>Frequency:</strong> Once per month to all active users</li>
+            </ul>
+        </div>
+
+        <div id="social-media" class="card content-section">
+            <h2>📱 Social Media Organic Strategy</h2>
+
+            <div class="alert">
+                <strong>Platforms:</strong> Facebook & Instagram (Latin American audience, highest ROI)<br>
+                <strong>Language:</strong> Spanish only (all content)<br>
+                <strong>Frequency:</strong> Minimum 2-3 posts per week (12 per month) + Stories (3-5 per week)<br>
+                <strong>Time:</strong> 2.5 hours/week total
+            </div>
+
+            <h3>4 Core Content Pillars</h3>
+
+            <h4 id="pillar-1">Pillar 1: Price Comparison (1x per week)</h4>
+            <div class="code-block">Hagamos las cuentas juntos:
+
+Remitly: $1.99 por transferencia
+MyBambu: $0.85 por transferencia
+
+Enviar una vez por semana durante un año:
+Remitly: $103.48
+MyBambu: $44.20
+
+Ahorras: $59.28 al año
+
+Esa plata podría ir a tu familia en su lugar.
+
+Descarga MyBambu hoy. Link en bio.
+
+#EnviarDinero #Remesas #AhorrarDinero #MyBambuApp</div>
+
+            <p><strong>Gráfico Simple (Canva - 5 min):</strong></p>
+            <ul>
+                <li>Comparación de pantalla dividida</li>
+                <li>Izquierda: "Otras Apps $1.99 😢"</li>
+                <li>Derecha: "MyBambu $0.85 😊"</li>
+                <li>Título: Mismo servicio. Misma velocidad. Mejor precio.</li>
+            </ul>
+
+            <h4 id="pillar-2">Pillar 2: Holiday/Seasonal IMT Push (1x per week Nov-Dec only)</h4>
+
+            <div class="code-block">Post de Gratitud Familiar (Nov 20):
+
+Esta época del año nos recuerda lo que más importa: la familia.
+
+Aunque estemos lejos, puedes demostrarles que te importan.
+
+Envía dinero a casa:
+• Toma 2 minutos
+• Solo $0.85
+• Llega al instante
+
+Está presente para tu familia, sin importar la distancia.
+Descarga MyBambu. Link en bio.
+
+#Familia #Gratitud #MyBambu</div>
+
+            <div class="code-block">Post de Navidad (Dec 6):
+
+Faltan 3 semanas para Navidad.
+
+Tu familia necesita ayuda con:
+• Regalos • Comida • Cuentas • Celebraciones
+
+Envía dinero a casa por solo $0.85.
+Está con ellos, aunque estés lejos.
+
+Descarga MyBambu. Link en bio.
+
+#Navidad #Familia #EnviarDinero</div>
+
+            <div class="code-block">Última Oportunidad (Dec 20):
+
+⏰ Última oportunidad para enviar dinero antes de Navidad.
+
+Todavía solo $0.85. Todavía llega en minutos.
+Tu familia te lo agradecerá.
+
+Descarga MyBambu. Link en bio.
+
+#Navidad #UltimaOportunidad #MyBambu</div>
+
+            <h4 id="pillar-3">Pillar 3: Educational (Direct Deposit) (1x per week)</h4>
+
+            <div class="code-block">No te preocupes más por meter plata a tu cuenta 💰
+
+Configura el depósito directo con MyBambu:
+1. Abre la app de MyBambu
+2. Ve a Configuración > Depósito Directo
+3. Dale tu número de ruta y cuenta a tu empleador
+4. Cobra automático cada día de pago
+
+Es 100% gratis. Es automático. No piensas más en meter plata.
+
+*La configuración inicial toma 3-7 días hábiles
+
+¿Preguntas? Comenta abajo y te ayudamos.
+
+#DepósitoDirecto #PagosAutomáticos #MyBambuApp</div>
+
+            <h4 id="pillar-4">Pillar 4: Customer Stories / Success (1x per week)</h4>
+
+            <div class="code-block">Plantilla de Historia de Cliente:
+
+[Foto o ilustración del cliente]
+
+"Llevo 2 años enviando dinero a casa cada semana con MyBambu.
+$0.85 cada vez. Mi familia sabe que pueden contar conmigo."
+
+- María, usuaria de MyBambu desde 2023
+
+Únete a miles que confían en MyBambu para estar conectados con su familia.
+Descarga ahora. Link en bio.
+
+#HistoriaDeCliente #MyBambu #EnviarDinero</div>
+
+            <h3 id="stories-strategy">Instagram & Facebook Stories Strategy</h3>
+
+            <p><strong>Frequency:</strong> 3-5 stories per week (1-2 minutes to create each)</p>
+            <p><strong>Purpose:</strong> Quick engagement, behind-the-scenes, time-sensitive offers</p>
+
+            <h4>Story Types:</h4>
+
+            <p><strong>1. Tips Rápidos (2x por semana)</strong></p>
+            <ul>
+                <li>Captura de pantalla de la app con texto superpuesto</li>
+                <li>Ejemplo: "Desliza para ver cómo configurar el depósito directo en 3 pasos"</li>
+                <li>Usa las herramientas de texto y stickers de Instagram</li>
+                <li>Agrega sticker de "Link en bio"</li>
+            </ul>
+
+            <p><strong>2. Recordatorios de Comparación de Precios (1x por semana)</strong></p>
+            <ul>
+                <li>Gráfico simple: "$0.85 vs $1.99"</li>
+                <li>Texto: "¿Por qué pagar más? 🤷"</li>
+                <li>Sticker de encuesta: "¿Usas MyBambu? Sí/Todavía no"</li>
+            </ul>
+
+            <p><strong>3. Cuenta Regresiva de Fiestas (Solo Nov-Dic)</strong></p>
+            <ul>
+                <li>Texto superpuesto: "Faltan X días para Navidad"</li>
+                <li>Imagen: Celebración familiar</li>
+                <li>CTA: "Envía dinero a casa hoy. $0.85"</li>
+                <li>Sticker de cuenta regresiva</li>
+            </ul>
+
+            <p><strong>4. Contenido Generado por Usuarios (Cuando esté disponible)</strong></p>
+            <ul>
+                <li>Repostear historias de clientes con permiso</li>
+                <li>Etiquetar al usuario</li>
+                <li>Agregar texto superpuesto con testimonio</li>
+            </ul>
+
+            <h3 id="posting-schedule">Posting Schedule (3 posts per week)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Week</th>
+                        <th>Monday Post</th>
+                        <th>Wednesday Post</th>
+                        <th>Friday Post</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Nov Week 1</strong></td>
+                        <td>Price comparison</td>
+                        <td>Direct deposit</td>
+                        <td>Customer story</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nov Week 2</strong></td>
+                        <td>Price comparison</td>
+                        <td>Direct deposit</td>
+                        <td>Customer story</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nov Week 3</strong></td>
+                        <td>Family gratitude post</td>
+                        <td>Price comparison</td>
+                        <td>Direct deposit</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nov Week 4</strong></td>
+                        <td>End of Month Support post</td>
+                        <td>Customer story</td>
+                        <td>Direct deposit</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dec Week 1</strong></td>
+                        <td>Christmas prep</td>
+                        <td>Price comparison</td>
+                        <td>Customer story</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dec Week 2</strong></td>
+                        <td>Christmas prep</td>
+                        <td>Direct deposit</td>
+                        <td>Customer story</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dec Week 3</strong></td>
+                        <td>Last chance Christmas</td>
+                        <td>Price comparison</td>
+                        <td>Direct deposit</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dec Week 4</strong></td>
+                        <td>Year-end gratitude</td>
+                        <td>Customer story</td>
+                        <td>New Year message</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 id="engagement-strategy">Engagement Strategy (10 min/day)</h3>
+            <ol>
+                <li>Respond to ALL comments within 24 hours</li>
+                <li>Answer questions directly</li>
+                <li>Thank users for positive feedback</li>
+            </ol>
+            <p><strong>That's it.</strong> No hashtag hunting, no community building, no live videos.</p>
+
+            <h3 id="content-creation">Content Creation Process</h3>
+            <p><strong>Batch Creation:</strong></p>
+            <ul>
+                <li><strong>Month 1 prep (Week 1):</strong> Write all 12 November posts (1.5 hours)</li>
+                <li><strong>Month 2 prep (Week 4 of Nov):</strong> Write all 12 December posts (1.5 hours)</li>
+                <li><strong>Graphics:</strong> Create 3-4 templates for posts (45 min total)</li>
+                <li><strong>Stories templates:</strong> Create 3-4 story templates (30 min total)</li>
+            </ul>
+
+            <p><strong>Time Investment:</strong></p>
+            <ul>
+                <li><strong>Setup (Week 1):</strong> 2.5 hours</li>
+                <li><strong>Weekly posting:</strong> 3 posts × 10 min = 30 min</li>
+                <li><strong>Weekly stories:</strong> 3-5 stories × 2 min = 6-10 min</li>
+                <li><strong>Weekly engagement:</strong> 10 min/day = 1.2 hours/week</li>
+                <li><strong>Total: ~2.5 hours per week after initial setup</strong></li>
+            </ul>
+
+            <p><strong>Tools Needed:</strong></p>
+            <ul>
+                <li>Canva (free version) - For graphics and story templates</li>
+                <li>Meta Business Suite - Schedule posts for FB & IG</li>
+                <li>Smartphone - Create stories directly in Instagram/Facebook apps</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script>
+        // Click-based navigation - show/hide sections
+        document.querySelectorAll('.sidenav a:not(.back-to-hub)').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetHref = this.getAttribute('href');
+                const targetId = targetHref.substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    // Check if target is a main section or subsection
+                    const mainSection = targetElement.closest('.content-section');
+
+                    if (mainSection) {
+                        // Hide all content sections
+                        document.querySelectorAll('.content-section').forEach(section => {
+                            section.classList.remove('active');
+                        });
+
+                        // Show the main section
+                        mainSection.classList.add('active');
+
+                        // If clicking a subsection, scroll to it within the visible section
+                        if (targetElement !== mainSection) {
+                            setTimeout(() => {
+                                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }, 100);
+                        } else {
+                            // Scroll to top of main content
+                            window.scrollTo({ top: 0, behavior: 'instant' });
+                        }
+                    }
+
+                    // Update active state for nav links
+                    document.querySelectorAll('.sidenav a').forEach(a => a.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Set initial active state on first nav link
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstLink = document.querySelector('.sidenav a[href="#crm-email"]');
+            if (firstLink) {
+                firstLink.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
